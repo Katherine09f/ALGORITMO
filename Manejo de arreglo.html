@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Manejo de Arreglos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e3f2fd; /* Azul claro */
+            margin: 0;
+        }
+
+        .contenedor {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+            border: 2px solid #1976d2; /* Borde azul */
+        }
+
+        .titulo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            margin: 10px 0;
+            text-align: center;
+            border: 1px solid #90caf9;
+            border-radius: 5px;
+            background-color: #f1f8e9;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .botones input {
+            width: 45%;
+            padding: 12px;
+            font-size: 18px;
+            background-color: #4CAF50; /* Verde */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .botones input:hover {
+            background-color: #388e3c; /* Verde oscuro */
+        }
+
+        .resultados {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: left;
+            color: #424242; /* Gris oscuro para los resultados */
+        }
+
+        .resultado {
+            margin: 10px 0;
+        }
+
+        .resultado strong {
+            font-weight: bold;
+            color: #1976d2;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <div class="titulo">¡Manejo de Arreglos!</div>
+
+        <input type="text" id="arreglo" placeholder="Ingresa un arreglo de números (ej: 1,2,3,4,5)">
+
+        <div class="botones">
+            <input type="button" value="Obtener Números Primos" onclick="obtenerPrimos()">
+            <input type="button" value="Obtener Números Perfectos" onclick="obtenerPerfectos()">
+        </div>
+
+        <div class="botones">
+            <input type="button" value="Obtener Promedio y Moda" onclick="obtenerPromedioModa()">
+        </div>
+
+        <div class="resultados" id="resultados">
+            <!-- Aquí se mostrarán los resultados -->
+        </div>
+    </div>
+
+    <script>
+        function obtenerPrimos() {
+            const arreglo = obtenerArreglo();
+            if (!arreglo) return;
+
+            const primos = arreglo.filter(num => esPrimo(num));
+            mostrarResultados("Números Primos", primos);
+        }
+
+        function obtenerPerfectos() {
+            const arreglo = obtenerArreglo();
+            if (!arreglo) return;
+
+            const perfectos = arreglo.filter(num => esPerfecto(num));
+            mostrarResultados("Números Perfectos", perfectos);
+        }
+
+        function obtenerPromedioModa() {
+            const arreglo = obtenerArreglo();
+            if (!arreglo) return;
+
+            const promedio = calcularPromedio(arreglo);
+            const moda = calcularModa(arreglo);
+            mostrarResultados("Promedio y Moda", { promedio, moda });
+        }
+
+        function obtenerArreglo() {
+            const input = document.getElementById("arreglo").value;
+            const arreglo = input.split(",").map(item => parseInt(item.trim())).filter(num => !isNaN(num));
+
+            if (arreglo.length === 0) {
+                alert("Por favor ingresa un arreglo válido de números.");
+                return null;
+            }
+
+            return arreglo;
+        }
+
+        function esPrimo(num) {
+            if (num <= 1) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        function esPerfecto(num) {
+            if (num <= 1) return false;
+            let sumaDivisores = 0;
+            for (let i = 1; i < num; i++) {
+                if (num % i === 0) sumaDivisores += i;
+            }
+            return sumaDivisores === num;
+        }
+
+        function calcularPromedio(arreglo) {
+            const suma = arreglo.reduce((acc, num) => acc + num, 0);
+            return suma / arreglo.length;
+        }
+
+        function calcularModa(arreglo) {
+            const frecuencia = {};
+            arreglo.forEach(num => frecuencia[num] = (frecuencia[num] || 0) + 1);
+            
+            let maxFrecuencia = 0;
+            let moda = [];
+            for (let num in frecuencia) {
+                if (frecuencia[num] > maxFrecuencia) {
+                    moda = [num];
+                    maxFrecuencia = frecuencia[num];
+                } else if (frecuencia[num] === maxFrecuencia) {
+                    moda.push(num);
+                }
+            }
+
+            return moda.join(", ");
+        }
+
+        function mostrarResultados(titulo, resultados) {
+            let resultadoHTML = `<div class="resultado"><strong>${titulo}:</strong></div>`;
+
+            if (Array.isArray(resultados)) {
+                resultadoHTML += resultados.length > 0 ? 
+                    `<div class="resultado">${resultados.join(", ")}</div>` :
+                    `<div class="resultado">No se encontraron resultados.</div>`;
+            } else {
+                resultadoHTML += `
+                    <div class="resultado"><strong>Promedio:</strong> ${resultados.promedio.toFixed(2)}</div>
+                    <div class="resultado"><strong>Moda:</strong> ${resultados.moda}</div>
+                `;
+            }
+
+            document.getElementById("resultados").innerHTML = resultadoHTML;
+        }
+
+    </script>
+
+</body>
+</html>
+

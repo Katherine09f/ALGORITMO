@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador: ¿Qué es una variable en programación?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f3f4f6;
+    }
+    .question {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .options button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    .options button:hover {
+      background-color: #0056b3;
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+  <h1>Simulador: ¿Qué es una variable en programación?</h1>
+  <p class="question">
+    ¿Qué es una variable en programación?
+  </p>
+  <div class="options">
+    <button onclick="checkAnswer('a')">a. Una función que recibe parámetros y devuelve un valor.</button>
+    <button onclick="checkAnswer('b')">b. Un bloque de código que se ejecuta varias veces dentro de un bucle.</button>
+    <button onclick="checkAnswer('c')">c. Un espacio en la memoria donde se almacena un valor que puede cambiar durante la ejecución del programa.</button>
+    <button onclick="checkAnswer('d')">d. Una constante que no cambia su valor en todo el programa.</button>
+  </div> 
+  <p class="feedback" id="feedback"></p>
+
+  <script>
+    function checkAnswer(option) {
+      const feedback = document.getElementById('feedback');
+      if (option === 'c') {
+        feedback.textContent = '¡Correcto! 😊 Una variable es un espacio en memoria para almacenar valores que pueden cambiar.';
+        feedback.style.color = 'green';
+      } else {
+        feedback.textContent = 'Respuesta incorrecta. 😞 Inténtalo de nuevo.';
+        feedback.style.color = 'red';
+      }
+    }
+  </script>
+</body>
+</html>

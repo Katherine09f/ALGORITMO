@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Preguntas</title>
+    <style>
+        /* Fondo general */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #4da2b1, #54d6d6);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Encabezado */
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Contenedor de preguntas */
+        .pregunta {
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .respuesta {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        label {
+            margin-left: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #6c63ff;
+        }
+
+        .resultado {
+            font-size: 24px;
+            margin-top: 10px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+    <script>
+        function verificarRespuesta(idPregunta, respuestaCorrecta) {
+            const opciones = document.getElementsByName(idPregunta);
+            const resultado = document.getElementById(`resultado-${idPregunta}`);
+            let seleccionada = false;
+
+            for (const opcion of opciones) {
+                if (opcion.checked) {
+                    seleccionada = true;
+                    if (opcion.value === respuestaCorrecta) {
+                        resultado.textContent = "¡Correcto!";
+                        resultado.style.color = "lightgreen";
+                    } else {
+                        resultado.textContent = "Incorrecto.";
+                        resultado.style.color = "red";
+                    }
+                    break;
+                }
+            }
+
+            if (!seleccionada) {
+                resultado.textContent = "Por favor, selecciona una respuesta.";
+                resultado.style.color = "orange";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Simulador de Preguntas</h1>
+
+    <!-- Pregunta 2 -->
+    <div class="pregunta">
+        <h2>¿Qué técnica de abstracción es útil al dividir un problema en múltiples subproblemas para su resolución en un programa?</h2>
+        <div class="respuesta">
+            <input type="radio" id="p2-a" name="p2" value="a">
+            <label for="p2-a">a. Creación de un modelo gráfico de alta precisión.</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p2-b" name="p2" value="b">
+            <label for="p2-b">b. Uso de diagramas de flujo detallados.</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p2-c" name="p2" value="c">
+            <label for="p2-c">c. Implementación de un ciclo de repetición.</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p2-d" name="p2" value="d">
+            <label for="p2-d">d. Descomposición modular o "divide y vencerás".</label>
+        </div>
+        <button onclick="verificarRespuesta('p2', 'd')">Verificar Respuesta</button>
+        <div id="resultado-p2" class="resultado"></div>
+    </div>
+</body>
+</html>

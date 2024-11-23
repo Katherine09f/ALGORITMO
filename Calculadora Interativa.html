@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Calculadora Básica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #E3F2FD; /* Color suave de fondo */
+            margin: 0;
+            overflow: hidden; /* Evita que la página se mueva hacia arriba o hacia abajo */
+        }
+
+        .calculadora {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+            border: 2px solid #1976D2; /* Borde con color azul */
+        }
+
+        .titulo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1976D2; /* Título con color azul */
+            margin-bottom: 20px;
+        }
+
+        .operacion {
+            font-size: 26px;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #424242; /* Color oscuro para el texto de la operación */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 20px;
+            margin: 10px 0;
+            text-align: center;
+            border: 2px solid #1976D2;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .botones input {
+            width: 45%;
+            padding: 15px;
+            font-size: 18px;
+            background-color: #4CAF50; /* Verde para los botones */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .botones input:hover {
+            background-color: #388E3C; /* Cambio de color cuando pasa el mouse */
+        }
+
+        .botones input:disabled {
+            background-color: #BDBDBD; /* Color gris cuando el botón está deshabilitado */
+            cursor: not-allowed;
+        }
+
+        .resultado {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #1976D2;
+        }
+
+        .contador {
+            font-size: 18px;
+            font-weight: bold;
+            color: #424242;
+        }
+
+        .puntos {
+            font-size: 22px;
+            font-weight: bold;
+            color: #1976D2;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="calculadora">
+        <div class="titulo">¡Juego de Calculadora Básica!</div>
+
+        <div class="contador">
+            <span>Tiempo: <span id="tiempo">30</span> segundos</span>
+        </div>
+        
+        <div class="operacion" id="operacion"></div>
+
+        <input type="text" id="respuesta" placeholder="Escribe tu respuesta" autofocus>
+
+        <div class="botones">
+            <input type="button" value="Comprobar" onclick="comprobarRespuesta()" id="comprobarBtn">
+            <input type="button" value="Siguiente" onclick="generarOperacion()" id="siguienteBtn" disabled>
+        </div>
+
+        <div class="resultado" id="resultado"></div>
+
+        <div class="puntos">
+            Puntos: <span id="puntos">0</span>
+        </div>
+    </div>
+
+    <script>
+        let puntos = 0;
+        let tiempoRestante = 30;
+        let operacionActual = '';
+        let respuestaCorrecta = 0;
+        let timer;
+        let timerIniciado = false;
+
+        function generarOperacion() {
+            let num1 = Math.floor(Math.random() * 10) + 1; 
+            let num2 = Math.floor(Math.random() * 10) + 1;
+            let operador = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)]; 
+
+            if (operador === '/' && num2 === 0) num2 = 1;
+
+            operacionActual = `${num1} ${operador} ${num2}`;
+            document.getElementById('operacion').innerText = operacionActual;
+
+            respuestaCorrecta = eval(operacionActual);
+
+            document.getElementById('respuesta').value = '';
+            document.getElementById('comprobarBtn').disabled = false;
+            document.getElementById('siguienteBtn').disabled = true;
+            document.getElementById('resultado').innerText = '';
+        }
+
+        function comprobarRespuesta() {
+            let respuestaUsuario = parseFloat(document.getElementById('respuesta').value);
+
+            if (Math.abs(respuestaUsuario - respuestaCorrecta) < 0.0001) {
+                puntos += 10;
+                document.getElementById('puntos').innerText = puntos;
+                document.getElementById('resultado').innerText = '¡Respuesta Correcta!';
+            } else {
+                document.getElementById('resultado').innerText = '¡Respuesta Incorrecta! La respuesta era: ' + respuestaCorrecta;
+            }
+
+            document.getElementById('comprobarBtn').disabled = true;
+            document.getElementById('siguienteBtn').disabled = false;
+        }
+
+        function siguienteOperacion() {
+            generarOperacion();
+        }
+
+        function actualizarTiempo() {
+            if (tiempoRestante > 0) {
+                tiempoRestante--;
+                document.getElementById('tiempo').innerText = tiempoRestante;
+            } else {
+                clearInterval(timer);
+                alert('¡Tiempo agotado! Tu puntuación final es: ' + puntos);
+                location.reload(); 
+            }
+        }
+
+        function iniciarJuego() {
+            generarOperacion();
+            timer = setInterval(actualizarTiempo, 1000);
+        }
+
+        iniciarJuego();
+    </script>
+
+</body>
+</html>

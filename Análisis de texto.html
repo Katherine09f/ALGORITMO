@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Análisis de Texto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e3f2fd; /* Azul suave de fondo */
+            margin: 0;
+        }
+
+        .contenedor {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+            border: 2px solid #1976d2; /* Borde azul */
+        }
+
+        .titulo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1976d2; /* Azul oscuro para el título */
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 18px;
+            margin: 10px 0;
+            border: 1px solid #90caf9;
+            border-radius: 5px;
+            background-color: #f1f8e9; /* Fondo claro para las cajas de texto */
+            resize: none;
+        }
+
+        .botones {
+            margin-top: 15px;
+        }
+
+        .botones input {
+            width: 45%;
+            padding: 12px;
+            font-size: 18px;
+            background-color: #4caf50; /* Verde suave para los botones */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .botones input:hover {
+            background-color: #388e3c; /* Verde más oscuro al pasar el ratón */
+        }
+
+        .resultados {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: left;
+            color: #424242; /* Gris oscuro para los resultados */
+        }
+
+        .resultado {
+            margin: 10px 0;
+        }
+
+        .comparar {
+            font-weight: bold;
+            color: #388e3c; /* Verde para destacar el resultado de la comparación */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <div class="titulo">¡Juego de Análisis de Texto!</div>
+
+        <textarea id="texto" placeholder="Escribe un párrafo aquí..."></textarea>
+
+        <div class="botones">
+            <input type="button" value="Analizar Texto" onclick="analizarTexto(event)">
+            <input type="button" value="Invertir Texto" onclick="invertirTexto()">
+        </div>
+
+        <div class="resultados" id="resultados">
+        </div>
+
+        <div class="titulo">Comparar dos frases</div>
+
+        <textarea id="frase1" placeholder="Ingresa la primera frase..." style="margin-bottom: 10px;"></textarea>
+        <textarea id="frase2" placeholder="Ingresa la segunda frase..."></textarea>
+
+        <div class="botones">
+            <input type="button" value="Comparar Frases" onclick="compararFrases()">
+        </div>
+
+        <div id="comparacion" class="resultados"></div>
+    </div>
+
+    <script>
+        function analizarTexto(event) {
+            event.preventDefault();  // Previene el desplazamiento
+
+            const texto = document.getElementById("texto").value;
+
+            if (texto === "") {
+                alert("Por favor, ingresa un párrafo para analizar.");
+                return;
+            }
+            const totalCaracteres = texto.length;
+            const totalVocales = (texto.match(/[aeiouáéíóúAEIOUÁÉÍÓÚ]/g) || []).length;
+            const totalSignos = (texto.match(/[.,;!?¿¡:""()-]/g) || []).length;
+            const totalEspacios = (texto.match(/\s/g) || []).length;
+            const totalPalabras = (texto.match(/\b\w+\b/g) || []).length;
+            const totalDigitos = (texto.match(/\d/g) || []).length;
+            let resultados = `
+                <div class="resultado">Total de caracteres: ${totalCaracteres}</div>
+                <div class="resultado">Total de vocales: ${totalVocales}</div>
+                <div class="resultado">Total de signos de puntuación: ${totalSignos}</div>
+                <div class="resultado">Total de espacios: ${totalEspacios}</div>
+                <div class="resultado">Total de palabras: ${totalPalabras}</div>
+                <div class="resultado">Total de dígitos: ${totalDigitos}</div>
+            `;
+            document.getElementById("resultados").innerHTML = resultados;
+        }
+
+        function invertirTexto() {
+            const texto = document.getElementById("texto").value;
+
+            if (texto === "") {
+                alert("Por favor, ingresa un texto para invertir.");
+                return;
+            }
+
+            const textoInvertido = texto.split("").reverse().join("");
+            document.getElementById("resultados").innerHTML = `
+                <div class="resultado">Texto invertido: ${textoInvertido}</div>
+            `;
+        }
+
+        function compararFrases() {
+            const frase1 = document.getElementById("frase1").value;
+            const frase2 = document.getElementById("frase2").value;
+
+            if (frase1 === "" || frase2 === "") {
+                alert("Por favor, ingresa ambas frases para comparar.");
+                return;
+            }
+            const palabrasFrase1 = frase1.split(/\s+/).filter(word => word.length > 0).length;
+            const palabrasFrase2 = frase2.split(/\s+/).filter(word => word.length > 0).length;
+            let resultadoComparacion = "";
+            if (palabrasFrase1 > palabrasFrase2) {
+                resultadoComparacion = `La primera frase tiene más palabras: ${palabrasFrase1} palabras.`;
+            } else if (palabrasFrase1 < palabrasFrase2) {
+                resultadoComparacion = `La segunda frase tiene más palabras: ${palabrasFrase2} palabras.`;
+            } else {
+                resultadoComparacion = "Ambas frases tienen el mismo número de palabras.";
+            }
+
+            document.getElementById("comparacion").innerHTML = `
+                <div class="comparar">${resultadoComparacion}</div>
+            `;
+        }
+    </script>
+
+</body>
+</html>

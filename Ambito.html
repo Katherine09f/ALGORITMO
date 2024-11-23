@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Opción Múltiple</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Azul claro */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s;
+        }
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        form label {
+            display: block;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        form input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #2c3e50; /* Azul oscuro */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #34495e;
+        }
+        #resultado {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .respuesta-correcta {
+            color: #28a745; /* Verde */
+        }
+        .respuesta-incorrecta {
+            color: #dc3545; /* Rojo */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pregunta sobre Ámbito de Variables</h1>
+        <p class="question">¿Qué significa que una variable tenga "ámbito local" en un programa?</p>
+        <form id="quizForm">
+            <label>
+                <input type="radio" name="respuesta" value="a"> Que se utiliza como parámetro de entrada para una función.
+            </label>
+            <label>
+                <input type="radio" name="respuesta" value="b"> Que puede ser accedida desde cualquier parte del programa.
+            </label>
+            <label>
+                <input type="radio" name="respuesta" value="c"> Que mantiene su valor durante toda la ejecución del programa.
+            </label>
+            <label>
+                <input type="radio" name="respuesta" value="d"> Que solo puede ser utilizada dentro de la función o bloque donde fue declarada.
+            </label>
+            <button type="button" onclick="verificarRespuesta()">Enviar Respuesta</button>
+        </form>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function verificarRespuesta() {
+            const respuestas = document.getElementsByName('respuesta');
+            let seleccion = null;
+
+            for (const respuesta of respuestas) {
+                if (respuesta.checked) {
+                    seleccion = respuesta.value;
+                    break;
+                }
+            }
+
+            const resultado = document.getElementById('resultado');
+
+            if (seleccion === "d") {
+                resultado.innerHTML = "¡Correcto! 🎉 Una variable local solo puede ser utilizada dentro de la función o bloque donde fue declarada. 👍";
+                resultado.className = "respuesta-correcta";
+            } else if (seleccion) {
+                resultado.innerHTML = "Incorrecto 😢. Intenta de nuevo.";
+                resultado.className = "respuesta-incorrecta";
+            } else {
+                resultado.innerHTML = "Por favor selecciona una respuesta.";
+                resultado.className = "";
+            }
+        }
+    </script>
+</body>
+</html>
+

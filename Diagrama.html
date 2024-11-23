@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Preguntas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .question-container {
+            margin-bottom: 20px;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin: 10px 0;
+            background-color: #e9f7fe;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .options li:hover {
+            background-color: #d1ecf1;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Simulador de Preguntas</h1>
+        <div class="question-container">
+            <p>En un diagrama de flujo, ¿qué figura geométrica se utiliza para representar una decisión o condición?</p>
+            <ul class="options">
+                <li><input type="radio" name="answer" value="a"> a. Rectángulo</li>
+                <li><input type="radio" name="answer" value="b"> b. Círculo</li>
+                <li><input type="radio" name="answer" value="c"> c. Rombo</li>
+                <li><input type="radio" name="answer" value="d"> d. Triángulo</li>
+            </ul>
+            <button onclick="checkAnswer()">Verificar respuesta</button>
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            var options = document.getElementsByName("answer");
+            var result = document.getElementById("result");
+            var correctAnswer = "c"; // La respuesta correcta es "c. Rombo"
+            var selectedOption;
+
+            // Verificar cuál opción está seleccionada
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].checked) {
+                    selectedOption = options[i].value;
+                    break;
+                }
+            }
+
+            // Comprobar si la respuesta seleccionada es correcta
+            if (selectedOption === correctAnswer) {
+                result.textContent = "¡Correcto! La respuesta es 'c. Rombo'.";
+                result.className = "correct";
+            } else {
+                result.textContent = "Incorrecto. Intenta nuevamente.";
+                result.className = "incorrect";
+            }
+        }
+    </script>
+
+</body>
+</html>

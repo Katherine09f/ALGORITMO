@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Factura Restaurante</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        p {
+            font-size: 18px;
+            text-align: center;
+            color: #555;
+        }
+
+        #facturaForm {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        .resultado {
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-size: 18px;
+            display: none;
+        }
+
+        .resultado p {
+            margin: 10px 0;
+        }
+
+        .resultado .total {
+            font-size: 22px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Factura Restaurante</h1>
+    <p>Ingrese los datos para calcular el total de la factura:</p>
+
+    <form id="facturaForm">
+        <label for="dia">Día de la semana:</label>
+        <select id="dia" required>
+            <option value="lunes">Lunes</option>
+            <option value="martes">Martes</option>
+            <option value="miércoles">Miércoles</option>
+            <option value="jueves">Jueves</option>
+            <option value="viernes">Viernes</option>
+            <option value="sábado">Sábado</option>
+            <option value="domingo">Domingo</option>
+        </select>
+        <br>
+
+        <label for="personas">Número de personas:</label>
+        <input type="number" id="personas" min="1" required>
+        <br>
+
+        <label for="monto">Monto base de la factura ($):</label>
+        <input type="number" id="monto" min="1" required>
+        <br>
+
+        <label for="tarjeta">¿Pago con tarjeta de crédito?</label>
+        <input type="checkbox" id="tarjeta">
+        <br>
+
+        <button type="button" onclick="calcularTotal()">Calcular Total</button>
+    </form>
+
+    <div id="resultado" class="resultado"></div>
+
+    <script>
+        function calcularTotal() {
+            // Obtener datos del formulario
+            const dia = document.getElementById('dia').value.toLowerCase();
+            const personas = parseInt(document.getElementById('personas').value);
+            const monto = parseFloat(document.getElementById('monto').value);
+            const pagaConTarjeta = document.getElementById('tarjeta').checked;
+
+            let total = monto;
+
+            // Descuento del 15% los lunes o miércoles si hay más de 4 personas
+            if ((dia === "lunes" || dia === "miércoles") && personas > 4) {
+                total *= 0.85;
+            }
+
+            // Recargo del 10% los fines de semana
+            if (dia === "sábado" || dia === "domingo") {
+                total *= 1.10;
+            }
+
+            // Comisión del 5% si paga con tarjeta de crédito
+            if (pagaConTarjeta) {
+                total *= 1.05;
+            }
+
+            // Mostrar resultado
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `
+                <p><strong>Día:</strong> ${dia.charAt(0).toUpperCase() + dia.slice(1)}</p>
+                <p><strong>Número de personas:</strong> ${personas}</p>
+                <p><strong>Monto base:</strong> $${monto.toFixed(2)}</p>
+                <p class="total"><strong>Total a pagar:</strong> $${total.toFixed(2)}</p>
+            `;
+
+            // Hacer visible el resultado
+            resultadoDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

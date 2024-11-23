@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Opción Múltiple</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #f0f4c3, #c8e6c9);
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #81c784;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #66bb6a;
+        }
+        .respuesta-correcta {
+            color: #4caf50;
+        }
+        .respuesta-incorrecta {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pregunta Matemática</h1>
+        <p>Si un estudiante debe cursar 3 materias en el semestre, y cada una requiere 4 horas de estudio semanales... 
+            
+             ¿cuántas horas en total necesitará estudiar en una semana?</p>
+        <form id="quizForm">
+            <label>
+                <input type="radio" name="respuesta" value="a"> a) 10 horas
+            </label>
+            <label>
+                <input type="radio" name="respuesta" value="b"> b) 16 horas
+            </label>
+            <label>
+                <input type="radio" name="respuesta" value="c"> c) 12 horas
+            </label>
+            <label>
+                <input type="radio" name="respuesta" value="d"> d) 8 horas
+            </label><br>
+            <button type="button" onclick="verificarRespuesta()">Enviar Respuesta</button>
+        </form>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function verificarRespuesta() {
+            const respuestas = document.getElementsByName('respuesta');
+            let seleccion = null;
+
+            for (const respuesta of respuestas) {
+                if (respuesta.checked) {
+                    seleccion = respuesta.value;
+                    break;
+                }
+            }
+
+            const resultado = document.getElementById('resultado');
+
+            if (seleccion === "c") {
+                resultado.innerHTML = "¡Correcto! 🎉 El total es 12 horas (3 materias × 4 horas cada una). 👍";
+                resultado.className = "respuesta-correcta";
+            } else if (seleccion) {
+                resultado.innerHTML = "Incorrecto 😢. Intenta de nuevo.";
+                resultado.className = "respuesta-incorrecta";
+            } else {
+                resultado.innerHTML = "Por favor selecciona una respuesta.";
+                resultado.className = "";
+            }
+        }
+    </script>
+</body>
+</html>
+

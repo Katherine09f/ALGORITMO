@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Matrícula de Estudiante</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="../img/pregunta2.jpeg" alt="Matriculacion">
+    <div class="container">
+        <p>Selecciona el costo correcto de matrícula para el estudiante:</p>
+        <form>
+            <p><strong>El estudiante tiene:</strong></p>
+            <ul style="text-align: left;">
+                <li><strong>x:</strong> Período ordinario, 1 materia presencial, 2 a distancia y 4 talleres.</li>
+                <li><strong>y:</strong> Período extraordinario, 2 materias presenciales, 2 a distancia y 4 talleres.</li>
+                <li><strong>z:</strong> Período especial, 5 materias presenciales, 3 a distancia y 5 talleres.</li>
+            </ul>
+            <input type="radio" name="respuesta" value="a" id="a">
+            <label for="a">a. x=2260, y=3620, z=6700</label><br>
+            <input type="radio" name="respuesta" value="b" id="b">
+            <label for="b">b. x=1950, y=3200, z=5800</label><br>
+            <input type="radio" name="respuesta" value="c" id="c">
+            <label for="c">c. x=2150, y=3500, z=6000</label><br>
+            <input type="radio" name="respuesta" value="d" id="d">
+            <label for="d">d. x=2100, y=3300, z=5900</label><br>
+        </form>
+        <button onclick="verificar()">Verificar</button>
+        <div class="result" id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularCosto(periodo, materiasPresenciales, materiasDistancia, talleres) {
+            // Tarifas por período
+            const tarifas = {
+                ordinario: { base: 1050, presencial: 110, distancia: 150, taller: 200 },
+                extraordinario: { base: 1500, presencial: 210, distancia: 250, taller: 300 },
+                especial: { base: 2100, presencial: 310, distancia: 350, taller: 400 },
+            };
+
+            // Seleccionar tarifas según el período
+            const tarifa = tarifas[periodo];
+
+            // Calcular el costo total
+            const total =
+                tarifa.base +
+                materiasPresenciales * tarifa.presencial +
+                materiasDistancia * tarifa.distancia +
+                talleres * tarifa.taller;
+
+            return total;
+        }
+
+        function verificar() {
+            const opcionSeleccionada = document.querySelector('input[name="respuesta"]:checked');
+            const resultado = document.getElementById("resultado");
+
+            if (!opcionSeleccionada) {
+                resultado.textContent = "Por favor selecciona una opción.";
+                resultado.style.color = "red";
+                return;
+            }
+
+            // Calcular los costos totales
+            const x = calcularCosto("ordinario", 1, 2, 4);
+            const y = calcularCosto("extraordinario", 2, 2, 4);
+            const z = calcularCosto("especial", 5, 3, 5);
+
+            // Respuesta correcta
+            const respuestaCorrecta = "a";
+            const respuestaTexto = `x=${x}, y=${y}, z=${z}`;
+
+            // Verificar respuesta
+            if (opcionSeleccionada.value === respuestaCorrecta) {
+                resultado.textContent = `¡Correcto! Los costos son: ${respuestaTexto}`;
+                resultado.style.color = "green";
+            } else {
+                resultado.textContent = `Incorrecto. Los costos correctos son: ${respuestaTexto}`;
+                resultado.style.color = "red";
+            }
+
+            // Limpiar selección
+            opcionSeleccionada.checked = false;
+        }
+    </script>
+</body>
+</html>

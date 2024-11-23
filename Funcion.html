@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Preguntas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Fondo color azul claro */
+            color: #333; /* Texto color oscuro */
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #00509e;
+        }
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff; /* Fondo blanco */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #00509e;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #003f7e;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .correcto {
+            color: green;
+        }
+        .incorrecto {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>¿Cuál es la forma correcta de definir una función que no devuelve un valor en PSeInt?</h1>
+    <form id="quizForm">
+        <label>
+            <input type="radio" name="respuesta" value="a">
+            a) funcion nombreFuncion(par1, par2)
+        </label>
+        <label>
+            <input type="radio" name="respuesta" value="b">
+            b) proceso nombreFuncion(par1, par2)
+        </label>
+        <label>
+            <input type="radio" name="respuesta" value="c">
+            c) procedimiento nombreFuncion(par1, par2)
+        </label>
+        <label>
+            <input type="radio" name="respuesta" value="d">
+            d) funcion sin retorno nombreFuncion(par1, par2)
+        </label>
+        <button type="button" onclick="verificarRespuesta()">Enviar</button>
+    </form>
+    <div id="resultado"></div>
+
+    <script>
+        function verificarRespuesta() {
+            const respuestas = document.getElementsByName('respuesta');
+            let seleccionada = null;
+
+            // Verificar qué opción está seleccionada
+            for (const respuesta of respuestas) {
+                if (respuesta.checked) {
+                    seleccionada = respuesta.value;
+                    break;
+                }
+            }
+
+            const resultadoDiv = document.getElementById('resultado');
+
+            // Mostrar mensaje basado en la selección
+            if (seleccionada === null) {
+                resultadoDiv.textContent = 'Por favor, selecciona una respuesta.';
+                resultadoDiv.className = ''; // Quitar colores
+            } else if (seleccionada === 'c') {
+                resultadoDiv.textContent = '¡Correcto! La respuesta es: procedimiento nombreFuncion(par1, par2).';
+                resultadoDiv.className = 'correcto';
+            } else {
+                resultadoDiv.textContent = 'Incorrecto. Inténtalo nuevamente.';
+                resultadoDiv.className = 'incorrecto';
+            }
+        }
+    </script>
+</body>
+</html>

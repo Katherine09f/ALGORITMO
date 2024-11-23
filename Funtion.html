@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Preguntas</title>
+    <style>
+        /* Fondo general */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Fondo gris muy claro */
+            color: #333; /* Texto en gris oscuro */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Encabezado */
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5em;
+            color: #444;
+        }
+
+        /* Contenedor de preguntas */
+        .pregunta {
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        pre {
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        .respuesta {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        label {
+            margin-left: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .resultado {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function verificarRespuesta(idPregunta, respuestaCorrecta) {
+            const opciones = document.getElementsByName(idPregunta);
+            const resultado = document.getElementById(`resultado-${idPregunta}`);
+            let seleccionada = false;
+
+            for (const opcion of opciones) {
+                if (opcion.checked) {
+                    seleccionada = true;
+                    if (opcion.value === respuestaCorrecta) {
+                        resultado.textContent = "😊 ¡Correcto!";
+                        resultado.style.color = "green";
+                    } else {
+                        resultado.textContent = "😞 Incorrecto.";
+                        resultado.style.color = "red";
+                    }
+                    break;
+                }
+            }
+
+            if (!seleccionada) {
+                resultado.textContent = "⚠️ Por favor, selecciona una respuesta.";
+                resultado.style.color = "orange";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Simulador de Preguntas</h1>
+
+    <!-- Pregunta 5 -->
+    <div class="pregunta">
+        <h2>¿Cuál es el resultado de ejecutar este código?</h2>
+        <pre>
+function sumaPares(n) {
+    let suma = 0;
+    for (let i = 0; i <= n; i++) {
+        if (i % 2 === 0) {
+            suma += i;
+        }
+    }
+    return suma;
+}
+let resultado = sumaPares(6);
+        </pre>
+        <div class="respuesta">
+            <input type="radio" id="p5-a" name="p5" value="a">
+            <label for="p5-a">a) 12</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p5-b" name="p5" value="b">
+            <label for="p5-b">b) 18</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p5-c" name="p5" value="c">
+            <label for="p5-c">c) 21</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p5-d" name="p5" value="d">
+            <label for="p5-d">d) 6</label>
+        </div>
+        <button onclick="verificarRespuesta('p5', 'b')">Verificar Respuesta</button>
+        <div id="resultado-p5" class="resultado"></div>
+    </div>
+</body>
+</html>

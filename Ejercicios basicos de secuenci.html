@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafío de Secuencias Numéricas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffdd57; 
+            color: #1a1a1a;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #ff4b5c; 
+            font-size: 48px;
+        }
+
+        .sequence {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #3b0a45; 
+            font-weight: bold;
+        }
+
+        .options button {
+            padding: 14px 30px;
+            font-size: 20px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #ff4b5c; 
+            color: white;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .options button:hover {
+            background-color: #ff2d2d; 
+            transform: scale(1.1); 
+        }
+
+        .options button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .result {
+            font-size: 28px;
+            margin-top: 20px;
+            display: none;
+            color: #3b0a45; 
+            font-weight: bold;
+        }
+
+        .score {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #00bcd4; 
+        }
+
+        #attempts {
+            color: #e91e63; 
+        }
+
+        .restart-button {
+            padding: 12px 25px; /* Ajuste el tamaño del padding para que no sea tan grande */
+            font-size: 18px; /* Ajuste el tamaño de la fuente */
+            margin: 20px auto; /* Centrado horizontalmente */
+            display: block; /* Se asegura de que el botón se trate como un bloque para el centrado */
+            background-color: #00c853;
+            color: white;
+            border: none;
+            border-radius: 8px; /* Esquinas redondeadas */
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: 200px; /* Ancho específico para que tenga un tamaño más "normal" */
+        }
+
+        .restart-button:hover {
+            background-color: #00b200;
+            transform: scale(1.05); /* Solo un pequeño aumento al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+    <h1>Desafío de Secuencias Numéricas</h1>
+
+    <div class="sequence" id="sequence"></div>
+
+    <div class="options">
+        <button onclick="checkAnswer(0)">Opción 1</button>
+        <button onclick="checkAnswer(1)">Opción 2</button>
+        <button onclick="checkAnswer(2)">Opción 3</button>
+    </div>
+
+    <div id="result" class="result"></div>
+    <div id="score" class="score">Puntuación: <span>0</span></div>
+    <div id="attempts" class="score">Intentos restantes: <span>3</span></div>
+
+    <div id="restart" class="restart-button" style="display:none;" onclick="restartGame()">Reiniciar Juego</div>
+
+    <script>
+        const sequences = [
+            {
+                question: '¿Qué número sigue en la secuencia 2, 4, 6, ...?',
+                options: [8, 9, 10],
+                correctAnswer: 8
+            },
+            {
+                question: '¿Cuál es el patrón en la secuencia 5, 10, 15, ...?',
+                options: [20, 22, 25],
+                correctAnswer: 20
+            },
+            {
+                question: '¿Qué número sigue en la secuencia 10, 20, 30, ...?',
+                options: [35, 40, 45],
+                correctAnswer: 40
+            },
+            {
+                question: '¿Cuál es el patrón en la secuencia 2, 4, 8, 16, ...?',
+                options: [20, 32, 64],
+                correctAnswer: 32
+            }
+        ];
+
+        let score = 0;
+        let attempts = 3;
+        let currentQuestion = 0;
+
+        function loadQuestion() {
+            if (currentQuestion < sequences.length) {
+                const sequence = sequences[currentQuestion];
+                document.getElementById('sequence').innerText = sequence.question;
+
+                const buttons = document.querySelectorAll('.options button');
+                sequence.options.forEach((option, index) => {
+                    buttons[index].innerText = option;
+                    buttons[index].disabled = false; 
+                });
+
+                document.getElementById('result').style.display = 'none';
+            } else {
+                endGame();
+            }
+        }
+
+        function checkAnswer(selected) {
+            const correctAnswer = sequences[currentQuestion].correctAnswer;
+            const resultElement = document.getElementById('result');
+            const scoreElement = document.getElementById('score');
+            const attemptsElement = document.getElementById('attempts');
+
+            if (sequences[currentQuestion].options[selected] === correctAnswer) {
+                resultElement.innerText = '¡Correcto! ¡Siguiente pregunta!';
+                resultElement.style.color = '#00c853'; 
+                score++;
+            } else {
+                resultElement.innerText = 'Incorrecto. ¡Inténtalo de nuevo!';
+                resultElement.style.color = '#e91e63'; 
+                attempts--;
+            }
+
+            resultElement.style.display = 'block';
+            scoreElement.innerHTML = 'Puntuación: <span>' + score + '</span>';
+            attemptsElement.innerHTML = 'Intentos restantes: <span>' + attempts + '</span>';
+
+            currentQuestion++;
+
+            if (attempts <= 0) {
+                endGame();
+            } else {
+                setTimeout(loadQuestion, 1500); 
+            }
+        }
+
+        function endGame() {
+            const resultElement = document.getElementById('result');
+            resultElement.innerText = 'Juego terminado. Tu puntuación final es: ' + score;
+            resultElement.style.display = 'block';
+            const buttons = document.querySelectorAll('.options button');
+            buttons.forEach(button => button.disabled = true); 
+            document.getElementById('restart').style.display = 'block'; // Mostrar el botón para reiniciar
+        }
+
+        function restartGame() {
+            score = 0;
+            attempts = 3;
+            currentQuestion = 0;
+            document.getElementById('score').innerHTML = 'Puntuación: <span>0</span>';
+            document.getElementById('attempts').innerHTML = 'Intentos restantes: <span>3</span>';
+            document.getElementById('restart').style.display = 'none'; // Ocultar el botón de reiniciar
+            loadQuestion(); // Cargar la primera pregunta nuevamente
+        }
+
+        loadQuestion(); 
+    </script>
+</body>
+</html>

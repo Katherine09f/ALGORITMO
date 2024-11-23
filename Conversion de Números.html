@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Conversiones de Números</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e3f2fd; /* Azul suave de fondo */
+            margin: 0;
+        }
+
+        .calculadora {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+            border: 2px solid #1976d2; /* Borde azul */
+        }
+
+        .titulo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1976d2; /* Azul oscuro para el título */
+            margin-bottom: 20px;
+        }
+
+        .operacion {
+            font-size: 26px;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #424242; /* Gris oscuro para la operación */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            margin: 10px 0;
+            text-align: center;
+            border: 1px solid #90caf9;
+            border-radius: 5px;
+            background-color: #f1f8e9; /* Fondo claro para las cajas de texto */
+        }
+
+        .botones {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .botones input {
+            width: 45%;
+            padding: 15px;
+            font-size: 18px;
+            background-color: #4CAF50; /* Verde suave para los botones */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .botones input:hover {
+            background-color: #388e3c; /* Verde más oscuro al pasar el ratón */
+        }
+
+        .botones input:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .resultado {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #424242; /* Gris oscuro para los resultados */
+        }
+
+        .contador {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1976d2; /* Azul para el contador */
+        }
+
+        .puntos {
+            font-size: 22px;
+            font-weight: bold;
+            color: #388e3c; /* Verde para los puntos */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculadora">
+        <div class="titulo">¡Juego de Conversiones de Números!</div>
+
+        <div class="contador">
+            <span>Tiempo: <span id="tiempo">30</span> segundos</span>
+        </div>
+        
+        <div class="operacion" id="operacion"></div>
+
+        <input type="text" id="respuesta" placeholder="Escribe tu respuesta" autofocus>
+
+        <div class="botones">
+            <input type="button" value="Comprobar" onclick="comprobarRespuesta()" id="comprobarBtn">
+            <input type="button" value="Siguiente" onclick="generarOperacion()" id="siguienteBtn" disabled>
+        </div>
+
+        <div class="resultado" id="resultado"></div>
+
+        <div class="puntos">
+            Puntos: <span id="puntos">0</span>
+        </div>
+    </div>
+
+    <script>
+        let puntos = 0;
+        let tiempoRestante = 30;
+        let operacionActual = '';
+        let respuestaCorrecta = '';
+        let timer;
+
+        function generarOperacion() {
+            let num = Math.floor(Math.random() * 100) + 1;
+
+            let tipoOperacion = Math.floor(Math.random() * 4);
+            switch (tipoOperacion) {
+                case 0: 
+                    operacionActual = `Binario: ${num.toString(2)} a Decimal`;
+                    respuestaCorrecta = parseInt(num.toString(2), 2); 
+                    break;
+                case 1: 
+                    operacionActual = `Decimal: ${num} a Binario`;
+                    respuestaCorrecta = num.toString(2); 
+                    break;
+                case 2: 
+                    operacionActual = `Binario: ${num.toString(2)} a Hexadecimal`;
+                    respuestaCorrecta = parseInt(num.toString(2), 2).toString(16).toUpperCase(); 
+                    break;
+                case 3: 
+                    let hexNum = num.toString(16).toUpperCase();
+                    operacionActual = `Hexadecimal: ${hexNum} a Binario`;
+                    respuestaCorrecta = parseInt(hexNum, 16).toString(2); 
+                    break;
+            }
+
+            document.getElementById('operacion').innerText = operacionActual;
+            document.getElementById('respuesta').value = '';  
+            document.getElementById('comprobarBtn').disabled = false;
+            document.getElementById('siguienteBtn').disabled = true;
+            document.getElementById('resultado').innerText = '';
+        }
+
+        function comprobarRespuesta() {
+            let respuestaUsuario = document.getElementById('respuesta').value.trim().toUpperCase();
+
+            if (respuestaUsuario === '') {
+                alert('Por favor, ingresa una respuesta.');
+                return;
+            }
+
+            if (respuestaUsuario === respuestaCorrecta.toString().toUpperCase()) {
+                puntos += 10;
+                document.getElementById('puntos').innerText = puntos;
+                document.getElementById('resultado').innerText = '¡Respuesta Correcta!';
+            } else {
+                document.getElementById('resultado').innerText = `¡Respuesta Incorrecta! La respuesta era: ${respuestaCorrecta}`;
+            }
+
+            document.getElementById('comprobarBtn').disabled = true;
+            document.getElementById('siguienteBtn').disabled = false;
+        }
+
+        function siguienteOperacion() {
+            generarOperacion();
+        }
+
+        function actualizarTiempo() {
+            if (tiempoRestante > 0) {
+                tiempoRestante--;
+                document.getElementById('tiempo').innerText = tiempoRestante;
+            } else {
+                clearInterval(timer);
+                alert('¡Tiempo agotado! Tu puntuación final es: ' + puntos);
+                location.reload(); 
+            }
+        }
+
+        // Función para iniciar el juego
+        function iniciarJuego() {
+            generarOperacion();
+            timer = setInterval(actualizarTiempo, 1000);
+        }
+
+        iniciarJuego();
+    </script>
+
+</body>
+</html>

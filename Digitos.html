@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suma de Dígitos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .resultado-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tarjeta {
+            background-color: #a3d5ff;
+            border-radius: 12px;
+            padding: 20px;
+            width: 150px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+            color: #333;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .tarjeta-suma {
+            background-color: #ffd5a3;
+            width: 180px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+     <!-- Botón de "Volver a simulador" en la parte superior izquierda -->
+     <a href="simulador.html" style="position: absolute; top: 20px; left: 20px; background-color: #4CAF50; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        Volver a Simulador </a>
+    <h2>Ingresa un número para sumar sus dígitos</h2>
+    <input type="number" id="numero" placeholder="Escribe un número">
+    <button onclick="sumarDigitos()">Calcular Suma</button>
+    
+    <div id="resultado" class="resultado-container">
+        <!-- Aquí se mostrarán las tarjetas con los dígitos y la suma -->
+    </div>
+
+    <!-- Llamada al archivo de JavaScript -->
+    <script src="../js/Numeros.js"></script>
+</body>
+</html>

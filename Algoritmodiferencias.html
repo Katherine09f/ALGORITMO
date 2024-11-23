@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Opción Múltiple</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s;
+        }
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            padding: 10px;
+            background-color: #ecf0f1;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .options li:hover {
+            background-color: #bdc3c7;
+        }
+        .correct {
+            background-color: #d4edda; /* Verde claro para la respuesta correcta */
+        }
+        .incorrect {
+            background-color: #bce4ee; /* Rojo claro para la respuesta incorrecta */
+        }
+        .feedback {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .feedback.correct {
+            color: green;
+        }
+        .feedback.incorrect {
+            color: rgb(233, 47, 109);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Pregunta de Opción Múltiple</h1>
+        <p class="question">¿Cuál es la diferencia principal entre un algoritmo iterativo y uno recursivo?</p>
+        <ul class="options">
+            <li onclick="checkAnswer(this, false)">a. Un algoritmo recursivo es más fácil de entender y programar que uno iterativo.</li>
+            <li onclick="checkAnswer(this, true)" id="correct">b. Un algoritmo iterativo repite un bloque de código utilizando bucles, mientras que un algoritmo recursivo se llama a sí mismo para resolver subproblemas.</li>
+            <li onclick="checkAnswer(this, false)">c. Un algoritmo iterativo no puede resolver problemas complejos, mientras que uno recursivo sí.</li>
+            <li onclick="checkAnswer(this, false)">d. Un algoritmo iterativo siempre es más eficiente que uno recursivo.</li>
+        </ul>
+        <p id="feedback" class="feedback"></p> <!-- Aquí aparecerá el mensaje de respuesta -->
+    </div>
+
+    <script>
+        function checkAnswer(selectedOption, isCorrect) {
+            const options = document.querySelectorAll('.options li');
+            const feedback = document.getElementById("feedback");
+
+            // Si la respuesta es correcta
+            if (isCorrect) {
+                selectedOption.classList.add('correct');
+                document.body.style.backgroundColor = '#d4edda'; // Color claro verde (correcto)
+                feedback.textContent = "¡Correcto!"; // Mensaje de respuesta correcta
+                feedback.classList.add("correct");
+                
+                // Deshabilitar todas las opciones después de la respuesta correcta
+                options.forEach(option => option.style.pointerEvents = 'none');
+            } else { // Si la respuesta es incorrecta
+                selectedOption.classList.add('incorrect');
+                document.body.style.backgroundColor = '#f8d7da'; // Color claro rojo (incorrecto)
+                feedback.textContent = "Incorrecto.¡Intenta nuevamente!"; // Mensaje de respuesta incorrecta
+                feedback.classList.add("incorrect")
+                options.forEach(option => option.style.pointerEvents = 'auto');
+            }
+        }
+    </script>
+
+</body>
+</html>

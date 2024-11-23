@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Pregunta 10</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .contenedor {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .respuesta {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        label {
+            margin-left: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #444;
+        }
+
+        .emoji-correcto {
+            color: #4CAF50;
+            font-size: 30px;
+        }
+
+        .emoji-incorrecto {
+            color: #FF5733;
+            font-size: 30px;
+        }
+
+        .emoji-advertencia {
+            color: #FFA500;
+            font-size: 30px;
+        }
+    </style>
+    <script>
+        function verificarRespuesta(idPregunta, respuestaCorrecta) {
+            const opciones = document.getElementsByName(idPregunta);
+            const resultado = document.getElementById(`resultado-${idPregunta}`);
+            let seleccionada = false;
+
+            for (const opcion of opciones) {
+                if (opcion.checked) {
+                    seleccionada = true;
+                    if (opcion.value === respuestaCorrecta) {
+                        resultado.textContent = "🎉 ¡Correcto!";
+                        resultado.style.color = "green";
+                    } else {
+                        resultado.textContent = "❌ ¡Incorrecto!";
+                        resultado.style.color = "red";
+                    }
+                    break;
+                }
+            }
+
+            if (!seleccionada) {
+                resultado.textContent = "⚠️ ¡Por favor, selecciona una respuesta!";
+                resultado.style.color = "orange";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>¿Qué característica NO pertenece a los algoritmos?</h1>
+        <h2>Seleccione una opción:</h2>
+        <div class="respuesta">
+            <input type="radio" id="p10-a" name="p10" value="a">
+            <label for="p10-a">a) Requiere múltiples lenguajes de programación para su implementación.</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p10-b" name="p10" value="b">
+            <label for="p10-b">b) Debe producir un resultado.</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p10-c" name="p10" value="c">
+            <label for="p10-c">c) Debe tener pasos bien definidos.</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p10-d" name="p10" value="d">
+            <label for="p10-d">d) Debe ser finito.</label>
+        </div>
+        <button onclick="verificarRespuesta('p10', 'a')">Verificar Respuesta</button>
+        <div id="resultado-p10" class="resultado"></div>
+    </div>
+</body>
+</html>

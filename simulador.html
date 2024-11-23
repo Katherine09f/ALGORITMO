@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicios de Lógica de Programación</title>
+    <style>
+      /* Estilos generales */
+      body { 
+
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #7dfcfc, #1eaa9e); /* Fondo degradado azul */
+        margin: 0;
+        padding: 20px;
+      }
+                  
+
+      h1 {
+        text-align: center;
+        color: #041561;
+        margin-bottom: 20px;
+
+      }
+
+      /* Contenedor de las tarjetas */
+      .grid {
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Estilos de las tarjetas */
+      .card {
+        flex: 1 1 calc(20% - 20px); /* Ajuste para 5 tarjetas por fila */
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s;
+        min-height: 180px;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+
+      }
+
+      .card h3 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+      }
+
+      .card p {
+        font-size: 0.9em;
+        color: #666;
+        margin-bottom: 15px;
+        line-height: 1.4;
+      }
+
+      .card a {
+
+        display: inline-block;
+        padding: 8px 12px;
+        background-color: #007bff;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+
+      .card a:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../menuprincipal.html" style="position: absolute; top: 20px; left: 20px; background-color: #2ab19fce; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+      Volver a inicio</a>
+    <h1>Ejercicios de Lógica de Programación</h1>
+    <div class="grid">
+      <!-- 40 Tarjetas (5 por fila, 8 filas en total) -->
+      <!-- Fila 1 -->
+      <div class="card">
+        <h3>Ejercicio 1 </h3>
+        <p>Un numero es primo cuando no tiene divisores excepto el uno y el
+          propio numero</p>
+        <a href="../html/primo.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio 2</h3>
+        <p>Escribe una función que calcule el factorial de un número dado.</p>
+        <a href="../html/numerodado.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio 3</h3>
+        <p>Crea un algoritmo para contar el número de vocales en una frase.</p>
+        <a href="../html/contarvocal.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio 4</h3>
+        <p>
+          Desarrolla un programa que determine el número máximo en un arreglo.
+        </p>
+        <a href="../html/numeroarreglo.html">Ver Ejercicio</a>
+      </div>
+      <!-- Fila 2 -->
+      <div class="grid">
+      <div class="card">
+        <h3>Ejercicio 5</h3>
+        <p>   función que genere 10 números y los almacene en un arreglo. 
+          Luego recórrelo y presenta el promedio de los números pares del arreglo.</p>
+        <a href="../pages/arreglos.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio 6</h3>
+        <p>Un restaurante que ofrece diferentes promociones dependiendo del día de la semana 
+          y el número de personas en la mesa.</p>
+        <a href="../pages/restaurante.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio 7</h3>
+        <p>funcion que pida al usuario una frase y cuente cuántos dígitos tiene.</p>
+        <a href="../pages/Usuariofrase.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio 8</h3>
+        <p>un programa que pida al usuario una frase y cuente cuántas palabras tiene.</p>
+        <a href="../pages/Programa.html">Ver Ejercicio</a>
+      </div>
+      <div class="grid">
+      <div class="card">
+        <h3>Ejercicio 9</h3>
+        <p>funcion que imprima todos los números del 1 al 50 que sean divisibles por 3 y 7. 
+          y al final muestre la suma de los numeros pares y la suma de los impares.</p>
+        <a href="../pages/Numerosdivisibles.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Banco de preguntas</h3>
+        <p>Aqui se vera todas la preguntas de opcion multiple </p>
+        <a href="../formulario.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 10</h3>
+        <p>El siguiente algoritmo verfica si un numero es Par o Impar.</p>
+        <a href="../pages/NumerosParOimpar.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 11</h3>
+        <p>Desarrollar una aplicación para matriculación en  línea, de una institución educativa.</p>
+        <a href="../pages/Matriculacion.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 12</h3>
+        <p>El siguiente algoritmo crea una funcion que presente el mayor de los numeros de un arreglo de 10 elementos.</p>
+        <a href="../pages/Elementos.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 13</h3>
+        <p>Una tienda de electrodomésticos tiene un sistema de precios especiales dependiendo del producto y la cantidad comprada.</p>
+        <a href="../pages/Tiendaelectrodomesticos.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 14</h3>
+        <p>Preguntas aleatorias sobre el software.</p>
+        <a href="../pages/Preguntas.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 15</h3>
+        <p>Diferencias principales.</p>
+        <a href="../pages/Diferencias.html">Ver Ejercicio</a>
+      </div>
+      <!-- Fila 4 -->
+      <div class="card">
+        <h3>Ejercicio Simulador 16</h3>
+        <p>Calcular la distancia.</p>
+        <a href="../pages/distanciarecorrida.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 17</h3>
+        <p>Algoritmos diferencias.</p>
+        <a href="../pages/Algoritmodiferencias.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 18</h3>
+        <p>Preguntas sobre el diagrama de flujo.</p>
+        <a href="../pages/Diagrama.html">Ver Ejercicio</a>
+      </div>
+      <!--Fila 5-->
+
+      <div class="card">
+        <h3>Ejercicio Simulador 19</h3>
+        <p>Elija la respuesta correcta.</p>
+        <a href="../pages/Programacion.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 20</h3>
+        <p>Seleccione cual es la forma correcta de definir una funcion que no devuelva un valor en Pseint?</p>
+        <a href="../pages/Funcion.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 21</h3>
+        <p>¿Cual es la forma correcta de almacenar el resultado de una funcion con retorno? 
+          Seleccione la respuesta correcta.</p>
+        <a href="../pages/Retorno.html">Ver Ejercicio</a>
+        </div>
+        <!-- Fila 5 -->
+      <div class="card">
+        <h3>Ejercicio Simulador 22</h3>
+        <p>En el siguiente algoritmo seleccione las lineas correctas de la siguiente imagen.</p>
+        <a href="../pages/Lineas.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 23</h3>
+        <p>Numeros divisibles por 3 y 7.</p>
+        <a href="../pages/Divisibles.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 24</h3>
+        <p>Suma de digitos.</p>
+        <a href="../pages/Digitos.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 25</h3>
+        <p>Analice las siguientes líneas de programa y escriba ¿cuál es la respuesta que genera m?.</p>
+        <a href="../pages/respuesta.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 26</h3>
+        <p>Los divisores de los siguientes números.</p>
+        <a href="../pages/Numeroexcluido.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 27</h3>
+        <p>Resuelva el siguiente enunciado.</p>
+        <a href="../pages/Tiempo.html">Ver Ejercicio</a>
+      </div>
+            <!-- Fila 6 -->
+      <div class="card">
+        <h3>Ejercicio Simulador 28</h3>
+        <p>Resuelve el siguiente problema.</p>
+        <a href="../pages/Estudiantes.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 29</h3>
+        <p>Seleccione la respuesta correcta.</p>
+        <a href="../pages/Variable.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 30</h3>
+        <p>Analiza el siguiente problema.</p>
+        <a href="../pages/Problema.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 31</h3>
+        <p>Seleccione cual es el paso correcto.</p>
+        <a href="../pages/Paso.html">Ver Ejercicio</a>
+      </div>
+
+       <!-- Fila 7 -->
+      <div class="card">
+        <h3>Ejercicio Simulador 32</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Diagramas de flujo.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 33</h3>
+        <p>Calcule el siguiente problema.</p>
+        <a href="../pages/Horas.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 34</h3>
+        <p>Responda el enunciado correcto.</p>
+        <a href="../pages/Circuito.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 35</h3>
+        <p>En su logica seleccione la respuesta correcta.</p>
+        <a href="../pages/Logica.html">Ver Ejercicio</a>
+      </div>
+      
+       <!-- Fila 8 -->
+       <div class="card">
+        <h3>Ejercicio Simulador 36</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Compilador.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 37</h3>
+        <p>Resuelva el siguiente enunciado.</p>
+        <a href="../pages/Fases.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 38</h3>
+        <p>Seleccione la respuesta correcta.</p>
+        <a href="../pages/Control.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 39</h3>
+        <p>Cual seria la respuesta.</p>
+        <a href="../pages/Funcionsuma.html">Ver Ejercicio</a>
+      </div>
+       <!-- Fila 9 -->
+       <div class="card">
+        <h3>Ejercicio Simulador 40</h3>
+        <p>Cual es el resultado correcto.</p>
+        <a href="../pages/Resultado.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 41</h3>
+        <p>Resuelva el siguiente enunciado.</p>
+        <a href="../pages/primo.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 42</h3>
+        <p>Seleccione la respuesta correcta.</p>
+        <a href="../pages/contar.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 43</h3>
+        <p>Genere 10 numeros.</p>
+        <a href="../pages/Arreglo.html">Ver Ejercicio</a>
+      </div>
+       <!-- Fila 10 -->
+       <div class="card">
+        <h3>Ejercicio Simulador 44</h3>
+        <p>Determina el total de la factura.</p>
+        <a href="../pages/Factura.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 45</h3>
+        <p>Contar los digitos de una frase.</p>
+        <a href="../pages/Frase.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 46</h3>
+        <p>Selecciona la respuesta correcta.</p>
+        <a href="../pages/Tecnicas.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 47</h3>
+        <p>Seleccione la cantidad correcta.</p>
+        <a href="../pages/Precio.html">Ver Ejercicio</a>
+      </div>
+       <!-- Fila 8 -->
+       <div class="card">
+        <h3>Ejercicio Simulador 48</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Operadores.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 49</h3>
+        <p>Seleccione la respuesta correcta.</p>
+        <a href="../pages/Proposito.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 50</h3>
+        <p>Seleccione la respuesta correcta.</p>
+        <a href="../pages/tecnica.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 51</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Salida.html">Ver Ejercicio</a>
+      </div>
+       <!-- Fila 9 -->
+       <div class="card">
+        <h3>Ejercicio Simulador 52</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Palabra.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 53</h3>
+        <p>Resuelva el siguiente enunciado.</p>
+        <a href="../pages/Funtion.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 54</h3>
+        <p>Cuantas palabras tiene la Frase.</p>
+        <a href="../pages/Palabras.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 55</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Abc.html">Ver Ejercicio</a>
+      </div>
+       <!-- Fila 10 -->
+       <div class="card">
+        <h3>Ejercicio Simulador 56</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Codigos.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 57</h3>
+        <p>Resuelva el siguiente enunciado.</p>
+        <a href="../pages/Condicion.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 58</h3>
+        <p>Seleccione la respuesta correcta.</p>
+        <a href="../pages/Pseudocodigo.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 59</h3>
+        <p>Seleccione la respuesta correcta.</p>
+        <a href="../pages/Nopertenece.html">Ver Ejercicio</a>
+      </div>
+       <!-- Fila 11 -->
+       <div class="card">
+        <h3>Ejercicio Simulador 60</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Objetivo.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 61</h3>
+        <p>Resuelva el siguiente enunciado.</p>
+        <a href="../pages/Llamarlafuncion.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 62</h3>
+        <p>Seleccione la respuesta correcta.</p>
+        <a href="../pages/Contarhasta5.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 63</h3>
+        <p>Cuenta el número de consonantes en una frase dada.</p>
+        <a href="../pages/Sumadivisores.html">Ver Ejercicio</a>
+      </div>
+       <!-- Fila 12 -->
+       <div class="card">
+        <h3>Ejercicio Simulador 64</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Costo.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 65</h3>
+        <p>Seleccione la respuesta correcta.</p>
+        <a href="../pages/Ambito.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 66</h3>
+        <p>Seleccione la respuesta correcta.</p>
+        <a href="../pages/Estudiante.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 67</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Descuento.html">Ver Ejercicio</a>
+      </div>
+       <!-- Fila 13 -->
+       <div class="card">
+        <h3>Ejercicio Simulador 68</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Anidad.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 69</h3>
+        <p>Resuelva el siguiente enunciado.</p>
+        <a href="../pages/Utilidad.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 70</h3>
+        <p>Seleccione la respuesta correcta.</p>
+        <a href="../pages/Figuras.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 71</h3>
+        <p>Cuenta el número de consonantes en una frase dada.</p>
+        <a href="../pages/Estructura.html">Ver Ejercicio</a>
+      </div>
+       <!-- Fila 14 -->
+       <div class="card">
+        <h3>Ejercicio Simulador 72</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/fibonacion.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 73</h3>
+        <p>Resuelva el siguiente enunciado.</p>
+        <a href="../pages/Clasificacion.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 74</h3>
+        <p>Seleccione la respuesta correcta.</p>
+        <a href="../pages/Encontrar.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 75</h3>
+        <p>Seleccione la respuesta correcta.</p>
+        <a href="../pages/Optimizacion.html">Ver Ejercicio</a>
+      </div>
+       <!-- Fila 15 -->
+       <div class="card">
+        <h3>Ejercicio Simulador 76</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Verificarprimo.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 77</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Simbolizar.html">Ver Ejercicio</a>
+      </div>
+       <!-- Fila 16 -->
+       <div class="card">
+        <h3>Ejercicio Simulador 78</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Porcentaje.html">Ver Ejercicio</a>
+      </div>
+      <div class="card">
+        <h3>Ejercicio Simulador 79</h3>
+        <p>Elija la respuesta correcta.</p>
+        <a href="../pages/infinito.html">Ver Ejercicio</a>
+      </div>
+       <!-- Fila 17 -->
+       <div class="card">
+        <h3>Ejercicio Simulador 80</h3>
+        <p>Seleccione el enunciado correcto.</p>
+        <a href="../pages/Quesignifica.html">Ver Ejercicio</a>
+      </div>
+  </body>
+</html>

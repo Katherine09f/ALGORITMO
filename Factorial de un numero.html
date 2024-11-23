@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Factoriales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            font-size: 2em;
+        }
+        main {
+            padding: 20px;
+        }
+        h2 {
+            font-size: 1.5em;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00799d;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .correcto {
+            color: green;
+        }
+        .incorrecto {
+            color: rgb(228, 69, 69);
+        }
+        .puntos {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>¡Adivina el Factorial!</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>¿Cuál es el factorial de este número?</h2>
+            <p id="numeroJuego"></p>
+            <input type="number" id="respuesta" placeholder="Introduce tu respuesta" required>
+            <button onclick="verificarRespuesta()">Comprobar</button>
+        </section>
+
+        <section class="resultado">
+            <p id="resultado" class=""></p>
+            <p id="nivel" class="puntos">Nivel: 1</p>
+            <p id="puntaje" class="puntos">Puntaje: 0</p>
+        </section>
+    </main>
+
+    <script>
+        let puntaje = 0;
+        let nivel = 1;
+        let numeroJuego;
+
+        function generarNumeroAleatorio() {
+            return Math.floor(Math.random() * (nivel * 5)) + 1; 
+        }
+
+        function calcularFactorial(num) {
+            let factorial = 1;
+            for (let i = 1; i <= num; i++) {
+                factorial *= i;
+            }
+            return factorial;
+        }
+
+        function nuevaRonda() {
+            numeroJuego = generarNumeroAleatorio(); 
+            document.getElementById("numeroJuego").textContent = `Número: ${numeroJuego}`;
+            document.getElementById("respuesta").value = "";
+            document.getElementById("resultado").textContent = ""; 
+            document.getElementById("nivel").textContent = `Nivel: ${nivel}`;
+            document.getElementById("puntaje").textContent = `Puntaje: ${puntaje}`;
+        }
+
+        function verificarRespuesta() {
+            let respuestaUsuario = parseInt(document.getElementById("respuesta").value);
+            let factorialCorrecto = calcularFactorial(numeroJuego);
+
+            if (isNaN(respuestaUsuario) || respuestaUsuario < 0) {
+                document.getElementById("resultado").textContent = "Por favor, introduce un número válido.";
+                document.getElementById("resultado").classList.add("incorrecto");
+                return;
+            }
+
+            if (respuestaUsuario === factorialCorrecto) {
+                puntaje += 10; 
+                document.getElementById("resultado").textContent = `¡Correcto! El factorial de ${numeroJuego} es ${factorialCorrecto}.`;
+                document.getElementById("resultado").classList.add("correcto");
+                nivel++; 
+            } else {
+                document.getElementById("resultado").textContent = `Incorrecto. El factorial de ${numeroJuego} es ${factorialCorrecto}.`;
+                document.getElementById("resultado").classList.add("incorrecto");
+            }
+
+            setTimeout(nuevaRonda, 2000); 
+        }
+
+        window.onload = nuevaRonda;
+    </script>
+
+</body>
+</html>

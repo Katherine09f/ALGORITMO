@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Condicionales</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            text-align: center;
+            padding: 30px;
+        }
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .question-container {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .question {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 1.5rem;
+            margin-top: 30px;
+            font-weight: bold;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .result p {
+            font-size: 1.3rem;
+            margin: 10px 0;
+        }
+        .result button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff7e5f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Condicionales</h1>
+    <p>Responde correctamente</p>
+
+    <form name="gameForm">
+        <!-- Pregunta 1 -->
+        <div id="q1" class="question-container">
+            <p class="question">Si hace sol, ¿qué debes llevar?</p>
+            <input type="radio" id="q1a" name="q1" value="sombrero"> Sombrero<br>
+            <input type="radio" id="q1b" name="q1" value="abrigo"> Abrigo<br>
+            <input type="radio" id="q1c" name="q1" value="guantes"> Guantes<br>
+            <button type="button" class="button" onclick="nextQuestion(1)">Siguiente</button>
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div id="q2" class="question-container">
+            <p class="question">¿Qué tiene más superficie, una mesa de 1 m² o una alfombra de 2 m²?</p>
+            <input type="radio" id="q2a" name="q2" value="mesa"> Mesa<br>
+            <input type="radio" id="q2b" name="q2" value="alfombra"> Alfombra<br>
+            <button type="button" class="button" onclick="nextQuestion(2)">Siguiente</button>
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div id="q3" class="question-container">
+            <p class="question">¿Cuál es menor, un jardín de 10 m² o un balcón de 5 m²?</p>
+            <input type="radio" id="q3a" name="q3" value="jardin"> Jardín<br>
+            <input type="radio" id="q3b" name="q3" value="balcon"> Balcón<br>
+            <button type="button" class="button" onclick="nextQuestion(3)">Siguiente</button>
+        </div>
+
+        <!-- Pregunta 4 -->
+        <div id="q4" class="question-container">
+            <p class="question">¿Qué recipiente puede contener más líquido, un vaso de 250 ml o una botella de 1 litro?</p>
+            <input type="radio" id="q4a" name="q4" value="vaso"> Vaso<br>
+            <input type="radio" id="q4b" name="q4" value="botella"> Botella<br>
+            <button type="button" class="button" onclick="nextQuestion(4)">Siguiente</button>
+        </div>
+
+        <!-- Resultados -->
+        <div id="results" class="result">
+            <h2>¡Has terminado el juego!</h2>
+            <p id="score"></p>
+            <button type="button" class="button" onclick="restartGame()">Reiniciar</button>
+        </div>
+    </form>
+
+    <script>
+        let score = 0;
+
+        // Mostrar la siguiente pregunta
+        function nextQuestion(questionNumber) {
+            const form = document.forms['gameForm'];
+            const selectedAnswer = form[`q${questionNumber}`].value;
+
+            // Verificar respuesta y puntuar
+            if ((questionNumber === 1 && selectedAnswer === "sombrero") ||
+                (questionNumber === 2 && selectedAnswer === "alfombra") ||
+                (questionNumber === 3 && selectedAnswer === "balcon") ||
+                (questionNumber === 4 && selectedAnswer === "botella")) {
+                score++;
+            }
+
+            // Ocultar la pregunta actual
+            document.getElementById(`q${questionNumber}`).style.display = 'none';
+
+            // Mostrar la siguiente pregunta
+            if (questionNumber < 4) {
+                document.getElementById(`q${questionNumber + 1}`).style.display = 'block';
+            } else {
+                showResults();
+            }
+        }
+
+        // Mostrar resultados
+        function showResults() {
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('score').textContent = `Tu puntaje es: ${score} de 4`;
+
+            // Ocultar las preguntas
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`q${i}`).style.display = 'none';
+            }
+        }
+
+        // Reiniciar el juego
+        function restartGame() {
+            score = 0;
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`q${i}`).style.display = 'none';
+            }
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('q1').style.display = 'block';
+        }
+
+        // Iniciar el juego mostrando la primera pregunta
+        document.getElementById('q1').style.display = 'block';
+    </script>
+</body>
+</html>

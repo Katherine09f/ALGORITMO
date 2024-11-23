@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador: Análisis de diagrama de flujo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f3f4f6;
+    }
+    .question {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .image-container {
+      margin: 20px auto;
+    }
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    .options button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    .options button:hover {
+      background-color: #0056b3;
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Simulador: Análisis de diagrama de flujo</h1>
+  <p class="question">
+    Dado el siguiente diagrama de flujo, realice la prueba de escritorio y seleccione el enunciado correcto:
+  </p>
+  <div class="image-container">
+    <img src="../img/pregunta4.jpg" alt="Diagrama de flujo">
+  </div>
+  <div class="options">
+    <button onclick="checkAnswer('a')">a. Diagrama de flujo que presenta el número menor y mayor</button>
+    <button onclick="checkAnswer('b')">b. Diagrama de flujo que presenta el número menor</button>
+    <button onclick="checkAnswer('c')">c. Diagrama de flujo que presenta el número mayor</button>
+    <button onclick="checkAnswer('d')">d. Diagrama de flujo que presenta el número mayor y menor</button>
+  </div>
+  <p class="feedback" id="feedback"></p>
+
+  <script>
+    function checkAnswer(option) {
+      const feedback = document.getElementById('feedback');
+      if (option === 'd') {
+        feedback.textContent = '¡Correcto! 😊 El diagrama de flujo presenta tanto el número mayor como el menor.';
+        feedback.style.color = 'green';
+      } else {
+        feedback.textContent = 'Respuesta incorrecta. 😞 Inténtalo de nuevo.';
+        feedback.style.color = 'red';
+      }
+    }
+  </script>
+</body>
+</html>

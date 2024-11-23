@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contar Dígitos en una Frase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+        }
+
+        #digitosForm {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        .resultado {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-size: 18px;
+            display: none;
+        }
+
+        .resultado p {
+            margin: 10px 0;
+        }
+
+        .resultado .total {
+            font-size: 22px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contar Dígitos en una Frase</h1>
+    <p>Escribe una frase para contar cuántos dígitos contiene:</p>
+
+    <form id="digitosForm">
+        <label for="frase">Frase:</label>
+        <input type="text" id="frase" placeholder="Ejemplo: 9 de octubre 1820" required>
+        <br>
+        <button type="button" onclick="contarDigitos()">Contar Dígitos</button>
+    </form>
+
+    <div id="resultado" class="resultado"></div>
+
+    <script>
+        function contarDigitos() {
+            const frase = document.getElementById('frase').value;
+            let contador = 0;
+
+            // Recorrer cada carácter de la frase
+            for (let i = 0; i < frase.length; i++) {
+                if (!isNaN(frase[i]) && frase[i] !== ' ') {
+                    contador++;
+                }
+            }
+
+            // Mostrar resultado
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `
+                <p><strong>Frase:</strong> "${frase}"</p>
+                <p><strong>Dígitos encontrados:</strong> ${contador} dígitos tiene la frase.</p>
+            `;
+
+            // Hacer visible el resultado
+            resultadoDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador: Importancia de definir entrada y salida</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f3f4f6;
+    }
+    .question {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .options button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    .options button:hover {
+      background-color: #0056b3;
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Simulador: Importancia de definir entrada y salida</h1>
+  <p class="question">
+    Al analizar un problema, ¿por qué es importante definir claramente la entrada y la salida esperada?
+  </p>
+  <div class="options">
+    <button onclick="checkAnswer('a')">a. Para asegurar que el programa cumpla con sus objetivos.</button>
+    <button onclick="checkAnswer('b')">b. Para reducir el tiempo de desarrollo.</button>
+    <button onclick="checkAnswer('c')">c. Para garantizar que el programa sea compatible con múltiples plataformas.</button>
+    <button onclick="checkAnswer('d')">d. Para evitar la escritura de pseudocódigo.</button>
+  </div>
+  <p class="feedback" id="feedback"></p>
+
+  <script>
+    function checkAnswer(option) {
+      const feedback = document.getElementById('feedback');
+      if (option === 'a') {
+        feedback.textContent = '¡Correcto! 😊 Definir entradas y salidas asegura que el programa cumpla sus objetivos.';
+        feedback.style.color = 'green';
+      } else {
+        feedback.textContent = 'Respuesta incorrecta. 😞 Inténtalo de nuevo.';
+        feedback.style.color = 'red';
+      }
+    }
+  </script>
+</body>
+</html>

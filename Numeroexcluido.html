@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Divisores</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f9fb;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            color: #34495e;
+        }
+        input {
+            padding: 12px 20px;
+            font-size: 16px;
+            margin: 10px 0;
+            width: 80%;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            transition: border 0.3s;
+        }
+        input:focus {
+            border-color: #007bff;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 80%;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        #resultados {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+        .error {
+            color: #e74c3c; /* Rojo para errores */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Simulador de Divisores</h1>
+        <p>Ingresa un número para calcular sus divisores (excluyendo el propio número):</p>
+        <input type="number" id="numero" placeholder="Escribe un número positivo">
+        <button onclick="calcularDivisores()">Calcular Divisores</button>
+        <div id="resultados"></div>
+    </div>
+
+    <script>
+        function calcularDivisores() {
+            const numero = parseInt(document.getElementById("numero").value);
+            const resultados = document.getElementById("resultados");
+            resultados.innerHTML = ""; // Limpiar resultados anteriores
+
+            if (isNaN(numero) || numero <= 0) {
+                resultados.innerHTML = "<span class='error'>Por favor, ingrese un número válido y positivo.</span>";
+                return;
+            }
+
+            let divisores = [];
+            for (let i = 1; i < numero; i++) {
+                if (numero % i === 0) {
+                    divisores.push(i);
+                }
+            }
+
+            if (divisores.length > 0) {
+                resultados.innerHTML = `Los divisores de ${numero} (excluyendo el propio número) son: ${divisores.join(", ")}.`;
+            } else {
+                resultados.innerHTML = `El número ${numero} no tiene divisores (excepto 1).`;
+            }
+        }
+    </script>
+
+</body>
+</html>

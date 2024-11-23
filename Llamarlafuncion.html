@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Opción Múltiple</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2em;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        pre {
+            background-color: #e2e2e2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #333;
+        }
+
+        #quizForm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.1em;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 200px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .respuesta-correcta {
+            color: #27ae60;
+            background-color: #e9f7ef;
+            border: 1px solid #27ae60;
+        }
+
+        .respuesta-incorrecta {
+            color: #e74c3c;
+            background-color: #fbe8e8;
+            border: 1px solid #e74c3c;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Pregunta de Programación</h1>
+    <p>¿Cuál es la salida si llamamos a la función <code>valor = Resta(10, 4)</code>?</p>
+    <p><strong>Función:</strong></p>
+    <pre>
+funcion valor=Resta(a, b)
+    valor = a - b
+fin funcion
+    </pre>
+
+    <form id="quizForm">
+        <label>
+            <input type="radio" name="respuesta" value="a"> a) 10
+        </label>
+        <label>
+            <input type="radio" name="respuesta" value="b"> b) 6
+        </label>
+        <label>
+            <input type="radio" name="respuesta" value="c"> c) 4
+        </label>
+        <label>
+            <input type="radio" name="respuesta" value="d"> d) 14
+        </label>
+        <button type="button" onclick="verificarRespuesta()">Enviar Respuesta</button>
+    </form>
+
+    <p id="resultado"></p>
+
+    <script>
+        function verificarRespuesta() {
+            const respuestas = document.getElementsByName('respuesta');
+            let seleccion = null;
+
+            for (const respuesta of respuestas) {
+                if (respuesta.checked) {
+                    seleccion = respuesta.value;
+                    break;
+                }
+            }
+
+            const resultado = document.getElementById('resultado');
+
+            if (seleccion === "b") {
+                resultado.innerHTML = "¡Correcto! 🎉 El resultado es 6. 👍";
+                resultado.className = "respuesta-correcta";
+            } else if (seleccion) {
+                resultado.innerHTML = "Incorrecto 😢. Intenta de nuevo.";
+                resultado.className = "respuesta-incorrecta";
+            } else {
+                resultado.innerHTML = "Por favor selecciona una respuesta.";
+                resultado.className = "";
+            }
+        }
+    </script>
+</body>
+</html>

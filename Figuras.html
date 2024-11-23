@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Preguntas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .table-container {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+    .question {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: white;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="table-container">
+      <h3>Fórmulas de Áreas de Figuras Geométricas</h3>
+      <table>
+        <tr>
+          <th>Figura</th>
+          <th>Fórmula</th>
+        </tr>
+        <tr>
+          <td>Cuadrado</td>
+          <td>Área = Lado × Lado</td>
+        </tr>
+        <tr>
+          <td>Rectángulo</td>
+          <td>Área = Base × Altura</td>
+        </tr>
+        <tr>
+          <td>Triángulo</td>
+          <td>Área = (Base × Altura) ÷ 2</td>
+        </tr>
+        <tr>
+          <td>Círculo</td>
+          <td>Área = π × Radio²</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="question">
+      ¿Cuál es el área de un triángulo con base de 6 cm y altura de 4 cm?
+    </div>
+    <div class="options">
+      <button onclick="checkAnswer('a')">a. 24 cm²</button>
+      <button onclick="checkAnswer('b')">b. 12 cm²</button>
+      <button onclick="checkAnswer('c')">c. 20 cm²</button>
+      <button onclick="checkAnswer('d')">d. 16 cm²</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <script>
+    function checkAnswer(answer) {
+      const feedback = document.getElementById("feedback");
+      if (answer === 'b') {
+        feedback.textContent = "🎉 ¡Correcto! El área de un triángulo se calcula como (Base × Altura) ÷ 2.";
+      } else {
+        feedback.textContent = "❌ Incorrecto. Recuerda que el área de un triángulo es (Base × Altura) ÷ 2.";
+      }
+    }
+  </script>
+</body>
+</html>

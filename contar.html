@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Contador Regresivo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        pre {
+            background-color: #e1e1e1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: left;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        .respuesta {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .respuesta:hover {
+            background-color: #f0f0f0;
+        }
+
+        .respuesta:active {
+            transform: scale(0.98);
+        }
+
+        .correcta {
+            background-color: lightgreen;
+            border-color: green;
+        }
+
+        .incorrecta {
+            background-color: lightcoral;
+            border-color: red;
+        }
+
+        .respuesta-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .resultado {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulador de Contador Regresivo</h1>
+    <p>¿Qué salida produce el siguiente código?</p>
+
+    <pre>
+function contarRegresivamente(n) {
+    for (let i = n; i >= 1; i--) {
+        console.log(i);
+    }
+}
+contarRegresivamente(4);
+    </pre>
+
+    <div class="respuesta-container">
+        <div class="respuesta" onclick="verificarRespuesta('a')">
+            a. 4 3 2 1
+        </div>
+        <div class="respuesta" onclick="verificarRespuesta('b')">
+            b. 1 2 3 4
+        </div>
+        <div class="respuesta" onclick="verificarRespuesta('c')">
+            c. 1 2 3 4 5
+        </div>
+        <div class="respuesta" onclick="verificarRespuesta('d')">
+            d. 5 4 3 2 1
+        </div>
+    </div>
+
+    <div id="resultado" class="resultado"></div>
+
+    <script>
+        function verificarRespuesta(opcion) {
+            let respuestas = document.querySelectorAll('.respuesta');
+            respuestas.forEach(respuesta => respuesta.classList.remove('correcta', 'incorrecta'));
+
+            // El resultado del código en la pregunta es 'a. 4 3 2 1' porque el ciclo cuenta regresivamente
+            if (opcion === 'a') {
+                document.querySelector('div[onclick="verificarRespuesta(\'a\')"]').classList.add('correcta');
+                document.getElementById("resultado").textContent = "Correcto! 😄";
+                document.getElementById("resultado").style.color = "green";
+            } else {
+                document.querySelector(`div[onclick="verificarRespuesta('${opcion}')"]`).classList.add('incorrecta');
+                document.getElementById("resultado").textContent = "Incorrecto! 😞";
+                document.getElementById("resultado").style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

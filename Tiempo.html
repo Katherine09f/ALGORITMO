@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Tiempos de Entrega</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f3f4f6;
+    }
+    .question {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .options button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    .options button:hover {
+      background-color: #0056b3;
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Simulador: ¿Cuánto tiempo tardará el repartidor?</h1>
+  <p class="question">
+    Un repartidor debe entregar un paquete en 3 diferentes ubicaciones. 
+    Si el tiempo promedio de entrega en cada ubicación es de 15 minutos, 
+    ¿cuánto tiempo total le tomará hacer las entregas?
+  </p>
+  <div class="options">
+    <button onclick="checkAnswer('a')">a. 50 minutos</button>
+    <button onclick="checkAnswer('b')">b. 60 minutos</button>
+    <button onclick="checkAnswer('c')">c. 30 minutos</button>
+    <button onclick="checkAnswer('d')">d. 45 minutos</button>
+  </div>
+  <p class="feedback" id="feedback"></p>
+
+  <script>
+    function checkAnswer(option) {
+      const feedback = document.getElementById('feedback');
+      if (option === 'b') {
+        feedback.textContent = '¡Correcto! 😊 3 ubicaciones x 15 minutos = 45 minutos.';
+        feedback.style.color = 'green';
+      } else {
+        feedback.textContent = 'Respuesta incorrecta. 😞 Inténtalo de nuevo.';
+        feedback.style.color = 'red';
+      }
+    }
+  </script>
+</body>
+</html>

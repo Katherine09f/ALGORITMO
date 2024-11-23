@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Factura de Restaurante</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 40px; text-align: center;">
+
+    <h1 style="color: #2d3e50; margin-bottom: 30px;">Calcular Factura de Restaurante</h1>
+      <!-- Botón de "Volver a simulador" en la parte superior izquierda -->
+    <a href="simulador.html" style="position: absolute; top: 20px; left: 20px; background-color: #4CAF50; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        Volver a Simulador </a>
+    <!-- Tarjeta para la entrada de datos -->
+    <div style="background-color: #ffffff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 80%; max-width: 500px; margin: 0 auto;">
+        <label for="subtotal" style="font-size: 16px; color: #333; margin-bottom: 10px; display: block;">Subtotal de la factura:</label>
+        <input type="number" id="subtotal" placeholder="Ingresa el subtotal" style="padding: 8px; width: 100%; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px;"><br>
+
+        <label for="diaSemana" style="font-size: 16px; color: #333; margin-bottom: 10px; display: block;">Día de la semana:</label>
+        <select id="diaSemana" style="padding: 8px; width: 100%; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px;">
+            <option value="lunes">Lunes</option>
+            <option value="martes">Martes</option>
+            <option value="miércoles">Miércoles</option>
+            <option value="jueves">Jueves</option>
+            <option value="viernes">Viernes</option>
+            <option value="sábado">Sábado</option>
+            <option value="domingo">Domingo</option>
+        </select><br>
+
+        <label for="personas" style="font-size: 16px; color: #333; margin-bottom: 10px; display: block;">Número de personas en la mesa:</label>
+        <input type="number" id="personas" placeholder="Ingresa el número de personas" style="padding: 8px; width: 100%; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px;"><br>
+
+        <label style="font-size: 16px; color: #333;">
+            <input type="checkbox" id="pagoConTarjeta" style="margin-right: 10px;"> Pago con tarjeta de crédito
+        </label><br><br>
+
+        <button onclick="calcularTotal()" style="padding: 12px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">Calcular Total</button>
+    </div>
+
+    <div id="resultado" style="margin-top: 30px; padding: 20px; border-radius: 12px; background-color: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 80%; max-width: 500px; margin: 20px auto;">
+        <h3 style="color: #333; margin-bottom: 20px;">Resultado</h3>
+        <p id="total" style="font-size: 20px; color: #4CAF50; font-weight: bold;"></p>
+    </div>
+<script src="../js/restaurante.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador: Algoritmo Mostrar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        p {
+            color: #555;
+            text-align: center;
+        }
+        button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .correct {
+            color: #28a745;
+        }
+        .incorrect {
+            color: #dc3545;
+        }
+        img {
+            max-width: 100%;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador: Algoritmo Mostrar</h1>
+        <p>Analiza el siguiente algoritmo y selecciona la respuesta correcta.</p>
+        
+        <!-- Espacio para cargar una imagen -->
+        <img id="uploadedImage" src="../img/pregunta14.jpeg"
+         type="file" id="imageInput" accept="image/*" onchange="loadImage(event)" style="margin-top: 10px; display: block; margin-left: auto; margin-right: auto;">
+        <h2>¿Cuál es el valor final de <code>M</code>?</h2>
+        <button onclick="checkAnswer('a')">a. 2</button>
+        <button onclick="checkAnswer('b')">b. 3</button>
+        <button onclick="checkAnswer('c')">c. 25</button>
+
+        <div id="feedback" class="result"></div>
+    </div>
+
+    <script>
+        // Función para evaluar la respuesta
+        function checkAnswer(option) {
+            const correctAnswer = 'b'; // La respuesta correcta es 3
+            const feedback = document.getElementById("feedback");
+
+            if (option === correctAnswer) {
+                feedback.innerHTML = "✅ ¡Correcto! La respuesta es 3.";
+                feedback.className = "result correct";
+            } else {
+                feedback.innerHTML = "❌ Incorrecto. Intenta nuevamente.";
+                feedback.className = "result incorrect";
+            }
+        }
+
+        // Función para cargar una imagen en el simulador
+        function loadImage(event) {
+            const uploadedImage = document.getElementById("uploadedImage");
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function () {
+                uploadedImage.src = reader.result;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>

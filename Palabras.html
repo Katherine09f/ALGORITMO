@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Palabras y Vocales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .contenedor {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Contador de Palabras y Vocales</h1>
+        <input type="text" id="frase" placeholder="Escribe tu frase aquí">
+        <button onclick="contarPalabras()">Contar Palabras</button>
+        <div id="resultado" class="resultado"></div>
+    </div>
+
+    <script>
+        function contarPalabras() {
+            const frase = document.getElementById('frase').value.trim();
+            const resultado = document.getElementById('resultado');
+            
+            if (frase === "") {
+                resultado.textContent = "⚠️ Por favor, ingresa una frase.";
+                resultado.style.color = "orange";
+                return;
+            }
+
+            // Contar palabras
+            const palabras = frase.split(/\s+/);
+            const totalPalabras = palabras.length;
+
+            // Verificar vocales en cada palabra
+            let palabrasConVocales = 0;
+            for (const palabra of palabras) {
+                if (/[aeiouáéíóúAEIOUÁÉÍÓÚ]/.test(palabra)) {
+                    palabrasConVocales++;
+                }
+            }
+
+            // Mostrar resultados
+            resultado.textContent = `La frase tiene ${totalPalabras} palabras. ${palabrasConVocales} palabra(s) contienen vocales.`;
+            resultado.style.color = "green";
+        }
+    </script>
+</body>
+</html>

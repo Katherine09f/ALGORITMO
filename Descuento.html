@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Clasificación de Edades</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff; /* Fondo azul claro */
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .question {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #2f3a45;
+    }
+
+    pre {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 10px;
+      color: #1e88e5;
+      text-align: left;
+      overflow-x: auto;
+      margin: 15px 0;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #4caf50;
+      color: white;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+
+    .feedback {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="question">
+      Dado el siguiente código, ¿qué categoría pertenece una persona de 15 años?
+      <pre>
+function clasificarEdad(edad) {
+  if (edad < 13) {
+    return 'Niño';
+  } else if (edad >= 13 && edad < 20) {
+    return 'Adolescente';
+  } else if (edad >= 20 && edad < 60) {
+    return 'Adulto';
+  } else {
+    return 'Senior';
+  }
+}
+      </pre>
+    </div>
+    <div class="options">
+      <button onclick="checkAnswer('a')">a. Niño</button>
+      <button onclick="checkAnswer('b')">b. Adolescente</button>
+      <button onclick="checkAnswer('c')">c. Adulto</button>
+      <button onclick="checkAnswer('d')">d. Señor</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <script>
+    function checkAnswer(answer) {
+      const feedback = document.getElementById("feedback");
+
+      if (answer === 'b') {
+        feedback.textContent = "🎉 ¡Correcto! Una persona de 15 años es un Adolescente.";
+        feedback.style.color = "#4caf50"; /* Verde */
+      } else {
+        feedback.textContent = "❌ Incorrecto. Revisa la clasificación: 'Niño', 'Adolescente', 'Adulto', 'Senior'.";
+        feedback.style.color = "#f44336"; /* Rojo */
+      }
+    }
+  </script>
+</body>
+</html>

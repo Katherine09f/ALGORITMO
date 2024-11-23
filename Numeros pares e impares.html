@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Números Pares e Impares</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            font-size: 2em;
+        }
+        main {
+            padding: 20px;
+        }
+        h2 {
+            font-size: 1.5em;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00799d;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .correcto {
+            color: green;
+        }
+        .incorrecto {
+            color: red;
+        }
+        .puntos {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .form-container {
+            text-align: left;
+            max-width: 400px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>¡Adivina los Pares e Impares!</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>¿Cuántos números pares e impares hay en el siguiente rango?</h2>
+
+            <div class="form-container">
+                <label for="inicio">Número Inicial:</label>
+                <input type="number" id="inicio" required>
+                
+                <label for="fin">Número Final:</label>
+                <input type="number" id="fin" required>
+                
+                <button type="button" onclick="nuevaRonda()">Iniciar Ronda</button>
+            </div>
+
+            <div id="respuesta" class="form-container" style="display:none;">
+                <h3>Responde en los siguientes campos:</h3>
+                <label for="paresRespuesta">Números Pares:</label>
+                <input type="number" id="paresRespuesta" placeholder="Adivina Pares" required>
+                
+                <label for="imparesRespuesta">Números Impares:</label>
+                <input type="number" id="imparesRespuesta" placeholder="Adivina Impares" required>
+                
+                <button type="button" onclick="verificarRespuesta()">Verificar Respuesta</button>
+            </div>
+
+            <div class="resultado">
+                <p id="resultado"></p>
+            </div>
+
+            <div class="puntos">
+                <p id="nivel">Nivel: 1</p>
+                <p id="puntaje">Puntaje: 0</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let puntaje = 0;
+        let nivel = 1;
+        let inicio;
+        let fin;
+
+        // Generar un rango aleatorio de números
+        function generarRango() {
+            inicio = Math.floor(Math.random() * (nivel * 10)); // Número de inicio aleatorio
+            fin = inicio + Math.floor(Math.random() * 10 + 5); // Fin del rango aleatorio (mínimo 5)
+            document.getElementById("inicio").value = inicio;
+            document.getElementById("fin").value = fin;
+        }
+
+        // Iniciar una nueva ronda
+        function nuevaRonda() {
+            generarRango(); // Genera un nuevo rango de números
+            document.getElementById("respuesta").style.display = "block"; 
+            document.getElementById("resultado").textContent = "";
+        }
+
+        // Contar los números pares e impares en el rango
+        function contarParesImpares() {
+            let pares = 0;
+            let impares = 0;
+            for (let i = inicio; i <= fin; i++) {
+                if (i % 2 === 0) {
+                    pares++;
+                } else {
+                    impares++;
+                }
+            }
+            return { pares, impares };
+        }
+
+        // Verificar las respuestas del jugador
+        function verificarRespuesta() {
+            const { pares, impares } = contarParesImpares();
+            let paresRespuesta = parseInt(document.getElementById("paresRespuesta").value);
+            let imparesRespuesta = parseInt(document.getElementById("imparesRespuesta").value);
+
+            // Verificar si las respuestas son válidas
+            if (isNaN(paresRespuesta) || isNaN(imparesRespuesta)) {
+                document.getElementById("resultado").textContent = "Por favor, ingresa valores válidos.";
+                document.getElementById("resultado").classList.add("incorrecto");
+                return;
+            }
+
+            // Verificar si las respuestas son correctas
+            if (paresRespuesta === pares && imparesRespuesta === impares) {
+                puntaje += 10; // Aumentar puntaje por respuesta correcta
+                document.getElementById("resultado").textContent = `¡Correcto! Pares: ${pares}, Impares: ${impares}.`;
+                document.getElementById("resultado").classList.add("correcto");
+                nivel++; // Aumentar nivel
+            } else {
+                document.getElementById("resultado").textContent = `Incorrecto. Pares: ${pares}, Impares: ${impares}.`;
+                document.getElementById("resultado").classList.add("incorrecto");
+            }
+
+            // Actualizar el puntaje y nivel
+            document.getElementById("nivel").textContent = `Nivel: ${nivel}`;
+            document.getElementById("puntaje").textContent = `Puntaje: ${puntaje}`;
+
+            setTimeout(nuevaRonda, 2000); // Iniciar nueva ronda después de 2 segundos
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promedio de Números Pares</title>
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          background: #f0f8ff; /* Fondo azul claro */
+          margin: 0;
+          padding: 40px;
+          text-align: center;
+          color: #333;
+      }
+
+      h2 {
+          color: #2f3a45;
+          font-size: 2rem;
+          margin-bottom: 25px;
+      }
+
+      /* Botón con estilo */
+      button {
+          padding: 12px 25px;
+          font-size: 16px;
+          background-color: #4caf50; /* Verde */
+          color: white;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+          background-color: #45a049;
+      }
+
+      /* Contenedor para los resultados */
+      #resultado {
+          margin-top: 30px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+          padding: 20px;
+      }
+
+      /* Estilo de las tarjetas */
+      .tarjeta {
+          background: #ffffff; /* Fondo blanco */
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 12px;
+          padding: 20px;
+          width: 250px;
+          text-align: center;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .tarjeta:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .tarjeta h3 {
+          font-size: 1.5rem;
+          color: #2f3a45;
+      }
+
+      .tarjeta p {
+          font-size: 1.1rem;
+          color: #607d8b;
+          margin-top: 10px;
+      }
+
+      .tarjeta .resultado-numero {
+          font-size: 1.3rem;
+          font-weight: bold;
+          color: #4caf50;
+          margin-top: 15px;
+      }
+
+      /* Estilo para el botón de volver */
+      .volver {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 8px;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 16px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          transition: background-color 0.3s ease;
+      }
+
+      .volver:hover {
+          background-color: #45a049;
+      }
+  </style>
+</head>
+<body>
+  <!-- Botón de "Volver a simulador" -->
+  <a href="simulador.html" class="volver">Volver a Simulador</a>
+
+  <h2>Generar 10 Números Aleatorios y Calcular Promedio de Pares</h2>
+
+  <!-- Botón para generar números y calcular promedio -->
+  <button onclick="calcularPromedioPares()">Generar y Calcular Promedio</button>
+  
+  <div id="resultado">
+      <!-- Aquí se mostrarán las tarjetas con los resultados -->
+  </div>
+
+<script>
+    function calcularPromedioPares() {
+        const numeros = [];
+        let sumaPares = 0;
+        let contadorPares = 0;
+
+        // Generar 10 números aleatorios entre 1 y 100
+        for (let i = 0; i < 10; i++) {
+            const numero = Math.floor(Math.random() * 100) + 1;
+            numeros.push(numero);
+
+            // Verificar si el número es par
+            if (numero % 2 === 0) {
+                sumaPares += numero;
+                contadorPares++;
+            }
+        }
+
+        // Calcular el promedio
+        const promedio = contadorPares > 0 ? (sumaPares / contadorPares).toFixed(2) : 0;
+
+        // Mostrar resultados en tarjetas
+        const resultadoDiv = document.getElementById('resultado');
+        resultadoDiv.innerHTML = `
+            <div class="tarjeta">
+                <h3>Números Generados</h3>
+                <p>${numeros.join(', ')}</p>
+            </div>
+            <div class="tarjeta">
+                <h3>Suma de Pares</h3>
+                <p class="resultado-numero">${sumaPares}</p>
+            </div>
+            <div class="tarjeta">
+                <h3>Cantidad de Pares</h3>
+                <p class="resultado-numero">${contadorPares}</p>
+            </div>
+            <div class="tarjeta">
+                <h3>Promedio de Pares</h3>
+                <p class="resultado-numero">${promedio}</p>
+            </div>
+        `;
+    }
+</script>
+</body>
+</html>

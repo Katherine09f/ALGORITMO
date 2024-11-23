@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pregunta 7</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #83a4d4, #b6fbff);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.5rem;
+      color: #004d99;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    .option {
+      padding: 10px;
+      margin: 8px 0;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #f9f9f9;
+      transition: all 0.3s;
+    }
+    .option:hover {
+      background: #e0f7fa;
+    }
+    .correct {
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+    }
+    .incorrect {
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 7</h1>
+    <p>Una tienda ofrece un descuento del 20% en un producto cuyo precio original es de $50. ¿Cuál será el precio final después del descuento?</p>
+    <div id="options">
+      <div class="option" onclick="checkAnswer(this, false)">a. 💵 45 dólares</div>
+      <div class="option" onclick="checkAnswer(this, false)">b. 💰 30 dólares</div>
+      <div class="option" onclick="checkAnswer(this, true)">c. 🛍️ 35 dólares</div>
+      <div class="option" onclick="checkAnswer(this, false)">d. 🤑 40 dólares</div>
+    </div>
+    <footer>¡Haz clic en la opción correcta! 😊</footer>
+  </div>
+  <script>
+    function checkAnswer(element, isCorrect) {
+      const options = document.querySelectorAll('.option');
+      options.forEach(option => option.style.pointerEvents = 'none'); // Deshabilitar clics adicionales
+      if (isCorrect) {
+        element.classList.add('correct');
+        alert("✅ ¡Correcto! El precio final es $35.");
+      } else {
+        element.classList.add('incorrect');
+        alert("❌ Incorrecto. La respuesta correcta es: c. 🛍️ 35 dólares.");
+      }
+    }
+  </script>
+</body>
+</html>

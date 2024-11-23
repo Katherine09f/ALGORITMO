@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego: Suma de Números Naturales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            font-size: 2em;
+        }
+        main {
+            padding: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00799d;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .correcto {
+            color: green;
+        }
+        .incorrecto {
+            color: red;
+        }
+        .puntos {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .form-container {
+            text-align: left;
+            max-width: 400px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>¡Desafío de Suma de Números Naturales!</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>¿Cuántos números naturales quieres sumar?</h2>
+
+            <div class="form-container">
+                <label for="numero">Número de términos:</label>
+                <input type="number" id="numero" min="1" required>
+
+                <button type="button" onclick="iniciarJuego()">Iniciar Juego</button>
+            </div>
+
+            <div id="respuesta" class="form-container" style="display:none;">
+                <h3>¿Cuál es la suma de los primeros <span id="numeroTérminos"></span> números naturales?</h3>
+                <input type="number" id="respuestaNumero" placeholder="Tu respuesta" required>
+                <button type="button" onclick="verificarRespuesta()">Verificar Respuesta</button>
+            </div>
+
+            <div class="resultado">
+                <p id="resultado"></p>
+            </div>
+
+            <div class="puntos">
+                <p id="nivel">Nivel: 1</p>
+                <p id="puntaje">Puntaje: 0</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let puntaje = 0;
+        let nivel = 1;
+        let numeroTérminos;
+        let sumaCorrecta;
+
+        // Función para iniciar el juego
+        function iniciarJuego() {
+            numeroTérminos = parseInt(document.getElementById("numero").value);
+            sumaCorrecta = calcularSuma(numeroTérminos);
+            document.getElementById("numeroTérminos").textContent = numeroTérminos;
+            document.getElementById("respuesta").style.display = "block";
+            document.getElementById("resultado").textContent = "";
+        }
+
+        // Función para calcular la suma de los primeros N números naturales
+        function calcularSuma(n) {
+            let suma = 0;
+            for (let i = 1; i <= n; i++) {
+                suma += i;
+            }
+            return suma;
+        }
+
+        // Función para verificar la respuesta del jugador
+        function verificarRespuesta() {
+            let respuesta = parseInt(document.getElementById("respuestaNumero").value);
+
+            if (isNaN(respuesta)) {
+                document.getElementById("resultado").textContent = "Por favor, ingresa un número válido.";
+                document.getElementById("resultado").classList.add("incorrecto");
+                return;
+            }
+
+            if (respuesta === sumaCorrecta) {
+                puntaje += 10;
+                document.getElementById("resultado").textContent = `¡Correcto! La suma es ${respuesta}.`;
+                document.getElementById("resultado").classList.add("correcto");
+                nivel++; // Subir de nivel
+            } else {
+                document.getElementById("resultado").textContent = `Incorrecto. La suma era ${sumaCorrecta}.`;
+                document.getElementById("resultado").classList.add("incorrecto");
+            }
+
+            document.getElementById("nivel").textContent = `Nivel: ${nivel}`;
+            document.getElementById("puntaje").textContent = `Puntaje: ${puntaje}`;
+
+            setTimeout(iniciarJuego, 2000); // Iniciar nueva ronda después de 2 segundos
+        }
+    </script>
+
+</body>
+</html>

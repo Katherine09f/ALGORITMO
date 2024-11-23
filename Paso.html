@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador: Primer paso en el desarrollo de modelos abstractos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f3f4f6;
+    }
+    .question {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .options button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    .options button:hover {
+      background-color: #0056b3;
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Simulador: Primer paso en el desarrollo de modelos abstractos</h1>
+  <p class="question">
+    En el desarrollo de modelos abstractos, ¿cuál es el primer paso para resolver un problema?
+  </p>
+  <div class="options">
+    <button onclick="checkAnswer('a')">a. Optimizar el código para rendimiento.</button>
+    <button onclick="checkAnswer('b')">b. Implementar una solución directamente en código.</button>
+    <button onclick="checkAnswer('c')">c. Probar la solución en distintos escenarios.</button>
+    <button onclick="checkAnswer('d')">d. Analizar y comprender el problema en profundidad.</button>
+  </div>
+  <p class="feedback" id="feedback"></p>
+
+  <script>
+    function checkAnswer(option) {
+      const feedback = document.getElementById('feedback');
+      if (option === 'd') {
+        feedback.textContent = '¡Correcto! 😊 Analizar y comprender el problema es el primer paso para resolverlo.';
+        feedback.style.color = 'green';
+      } else {
+        feedback.textContent = 'Respuesta incorrecta. 😞 Inténtalo de nuevo.';
+        feedback.style.color = 'red';
+      }
+    }
+  </script>
+</body>
+</html>

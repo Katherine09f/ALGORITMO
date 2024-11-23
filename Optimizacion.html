@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Optimización de Algoritmos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f8ff; /* Fondo azul claro */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      width: 100%;
+    }
+    .question {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    button {
+      padding: 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      background-color: #4caf50;
+      color: white;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="question">
+      ¿Cuál es el objetivo de la optimización de algoritmos?
+    </div>
+    <div class="options">
+      <button onclick="checkAnswer('a')">a. Eliminar todas las estructuras de control de un algoritmo.</button>
+      <button onclick="checkAnswer('b')">b. Reducir el uso de recursos como tiempo de ejecución o espacio en memoria.</button>
+      <button onclick="checkAnswer('c')">c. Aumentar el número de pasos en un algoritmo para hacerlo más preciso.</button>
+      <button onclick="checkAnswer('d')">d. Evitar el uso de pseudocódigo en la descripción del algoritmo.</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <script>
+    function checkAnswer(answer) {
+      const feedback = document.getElementById("feedback");
+
+      if (answer === 'b') {
+        feedback.textContent = "🎉 ¡Correcto! El objetivo de la optimización de algoritmos es reducir el uso de recursos como tiempo de ejecución o espacio en memoria.";
+      } else {
+        feedback.textContent = "❌ Incorrecto. Revisa el objetivo de la optimización que busca hacer más eficiente el algoritmo.";
+      }
+    }
+  </script>
+</body>
+</html>
+

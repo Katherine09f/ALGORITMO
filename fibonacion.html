@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Fibonacci</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #89f7fe, #66a6ff);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      width: 100%;
+    }
+    .question {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    button {
+      padding: 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      background-color: #4caf50;
+      color: white;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="question">
+      ¿Cuál es el resultado de <code>fibonacci(6)</code>?
+    </div>
+    <!-- Aquí puedes agregar la imagen -->
+    <img src="../img/Pregunta33.jpeg" alt="Imagen de Fibonacci" style="max-width: 100%; margin: 20px 0; border-radius: 10px;">
+    <div class="options">
+      <button onclick="checkAnswer('a')">a. 8</button>
+      <button onclick="checkAnswer('b')">b. 13</button>
+      <button onclick="checkAnswer('c')">c. 5</button>
+      <button onclick="checkAnswer('d')">d. 21</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <script>
+    function checkAnswer(answer) {
+      const feedback = document.getElementById("feedback");
+
+      if (answer === 'a') {
+        feedback.textContent = "🎉 ¡Correcto! El sexto término de la secuencia de Fibonacci es 8.";
+      } else {
+        feedback.textContent = "❌ Incorrecto. Revisa la secuencia: 0, 1, 1, 2, 3, 5, 8...";
+      }
+    }
+  </script>
+</body>
+</html>

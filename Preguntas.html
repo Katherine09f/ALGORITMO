@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Preguntas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .options {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .options li {
+            margin-bottom: 10px;
+        }
+        .options input {
+            margin-right: 10px;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador de Preguntas</h1>
+        <div class="question">
+            <p>¿Cuál es el propósito principal de la abstracción Entrada-Proceso-Salida en el desarrollo de software?</p>
+        </div>
+        <ul class="options">
+            <li>
+                <input type="radio" id="a" name="answer" value="a">
+                <label for="a">a. Crear el código necesario para la interfaz de usuario.</label>
+            </li>
+            <li>
+                <input type="radio" id="b" name="answer" value="b">
+                <label for="b">b. Garantizar que el programa cumpla con las normativas legales.</label>
+            </li>
+            <li>
+                <input type="radio" id="c" name="answer" value="c">
+                <label for="c">c. Reducir el número de pruebas necesarias.</label>
+            </li>
+            <li>
+                <input type="radio" id="d" name="answer" value="d">
+                <label for="d">d. Dividir el problema en partes que puedan analizarse por separado.</label>
+            </li>
+        </ul>
+        <button class="submit-btn" onclick="submitAnswer()">Enviar Respuesta</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function submitAnswer() {
+            const options = document.getElementsByName('answer');
+            let selectedOption = '';
+            for (let option of options) {
+                if (option.checked) {
+                    selectedOption = option.value;
+                    break;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+
+            if (selectedOption) {
+                if (selectedOption === 'd') {
+                    resultDiv.innerHTML = "¡Correcto! 🎉";
+                    resultDiv.style.color = 'green';
+                } else {
+                    resultDiv.innerHTML = "Incorrecto. ❌";
+                    resultDiv.style.color = 'red';
+                }
+            } else {
+                resultDiv.innerHTML = "Por favor selecciona una opción. ⚠️";
+                resultDiv.style.color = 'orange';
+            }
+        }
+    </script>
+</body>
+</html>
+

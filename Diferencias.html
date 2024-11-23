@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Condicionales</title>
+    <style>
+        /* Diseño general */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal */
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* Títulos */
+        h2 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Estilos de las preguntas */
+        label {
+            font-size: 16px;
+            margin-left: 10px;
+            display: inline-block;
+            color: #333;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Botón */
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        /* Efecto Hover para el botón */
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos del resultado */
+        .respuesta {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Respuesta Correcta */
+        .correcto {
+            color: green;
+        }
+
+        /* Respuesta Incorrecta */
+        .incorrecto {
+            color: red;
+        }
+
+        /* Pie de página */
+        .footer {
+            font-size: 14px;
+            text-align: center;
+            margin-top: 30px;
+            color: #888;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Pregunta: ¿Cuál es la principal diferencia entre una estructura condicional simple y una estructura condicional compuesta?</h2>
+
+    <form id="respuestaForm">
+        <!-- Opciones de respuesta -->
+        <div>
+            <input type="radio" id="opcionA" name="respuesta" value="a">
+            <label for="opcionA">a. Una estructura condicional simple puede tener más de dos condiciones, mientras que la compuesta solo tiene una.</label><br><br>
+
+            <input type="radio" id="opcionB" name="respuesta" value="b">
+            <label for="opcionB">b. No hay diferencias significativas entre ambas estructuras.</label><br><br>
+
+            <input type="radio" id="opcionC" name="respuesta" value="c">
+            <label for="opcionC">c. La estructura condicional compuesta es siempre más eficiente que la simple.</label><br><br>
+
+            <input type="radio" id="opcionD" name="respuesta" value="d">
+            <label for="opcionD">d. Una estructura condicional compuesta combina múltiples condiciones mediante operadores lógicos, mientras que una condicional simple evalúa solo una condición.</label><br><br>
+        </div>
+
+        <!-- Botón para verificar la respuesta -->
+        <button type="button" onclick="verificarRespuesta()">Verificar Respuesta</button>
+        </form>
+        <p id="resultado" class="respuesta"></p>
+        </div>
+
+        <script>
+        function verificarRespuesta() {
+        const opciones = document.getElementsByName('respuesta');
+        let seleccionada = '';
+        for (let i = 0; i < opciones.length; i++) {
+            if (opciones[i].checked) {
+                seleccionada = opciones[i].value;
+            }
+        }
+
+        const resultado = document.getElementById("resultado");
+        if (seleccionada === 'd') {
+            resultado.textContent = "¡Correcto! ✅";
+            resultado.className = "correcto";
+        } else {
+            resultado.textContent = "Incorrecto. ❌";
+            resultado.className = "incorrecto";
+        }
+    }
+</script>
+
+</body>
+</html>

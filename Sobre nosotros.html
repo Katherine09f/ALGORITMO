@@ -1,0 +1,154 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Pagina Inicial</title>
+    <style>
+      /* Estilo general */
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* Estilo para el encabezado */
+      .encabezado {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo .titulo {
+        font-size: 3em;
+        margin: 0;
+      }
+
+      /* Estilo para la sección principal */
+      main {
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        flex: 1;
+      }
+
+      /* Título de la sección */
+      main h2.titulo {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+      }
+
+      /* Estilo para el artículo */
+      .formContainer {
+        font-size: 1.2em;
+        line-height: 1.6;
+        color: #555;
+        text-align: justify;
+        margin-bottom: 30px;
+      }
+
+      /* Menú de navegación en la parte inferior */
+      footer {
+        background-color: #43b9ce;
+        padding: 20px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .menu {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      .menu li {
+        margin: 0 15px;
+      }
+
+      .menu a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1.2em;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .menu a:hover {
+        background-color: #FF9800;
+      }
+
+      /* Fondo de la página y márgenes */
+      section {
+        padding: 20px;
+      }
+
+      /* Ajustes para la vista móvil */
+      @media (max-width: 768px) {
+        .menu {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .menu li {
+          margin: 10px 0;
+        }
+
+        main {
+          padding: 20px;
+        }
+
+        .logo .titulo {
+          font-size: 2.2em;
+        }
+
+        main h2.titulo {
+          font-size: 2em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="encabezado">
+      <div class="logo">
+        <h1 class="titulo">Sobre Nosotros</h1>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <header>
+          <h2 class="titulo">Conoce nuestros objetivos</h2>
+        </header>
+        <article class="formContainer">
+          En Lógica de Programación con JavaScript, nos dedicamos a enseñar los fundamentos esenciales de la programación y la lógica de algoritmos utilizando uno de los lenguajes más populares y versátiles de la actualidad: JavaScript. Nuestro objetivo es capacitar a nuestros estudiantes para que adquieran las habilidades necesarias para resolver problemas de manera eficiente y lógica, y para que se conviertan en programadores hábiles y versátiles.
+        </article>
+      </section>
+    </main>
+
+    <!-- Menú en la parte inferior -->
+    <footer>
+      <nav>
+        <ul class="menu">
+          <li><a href="./menuprincipal.html">Menú Principal</a> </li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>

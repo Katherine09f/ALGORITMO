@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Pregunta 6</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .contenedor {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .respuesta {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        label {
+            margin-left: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #444;
+        }
+    </style>
+    <script>
+        function verificarRespuesta(idPregunta, respuestaCorrecta) {
+            const opciones = document.getElementsByName(idPregunta);
+            const resultado = document.getElementById(`resultado-${idPregunta}`);
+            let seleccionada = false;
+
+            for (const opcion of opciones) {
+                if (opcion.checked) {
+                    seleccionada = true;
+                    if (opcion.value === respuestaCorrecta) {
+                        resultado.textContent = "😊 ¡Correcto!";
+                        resultado.style.color = "green";
+                    } else {
+                        resultado.textContent = "😞 Incorrecto.";
+                        resultado.style.color = "red";
+                    }
+                    break;
+                }
+            }
+
+            if (!seleccionada) {
+                resultado.textContent = "⚠️ Por favor, selecciona una respuesta.";
+                resultado.style.color = "orange";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>¿Qué es un pseudocódigo?</h1>
+        <h2>Seleccione una opción:</h2>
+        <div class="respuesta">
+            <input type="radio" id="p6-a" name="p6" value="a">
+            <label for="p6-a">a) Una descripción estructurada y detallada de los pasos de un algoritmo.</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p6-b" name="p6" value="b">
+            <label for="p6-b">b) Un software usado para crear programas en diferentes lenguajes.</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p6-c" name="p6" value="c">
+            <label for="p6-c">c) Un diagrama de flujo simplificado que representa un algoritmo.</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p6-d" name="p6" value="d">
+            <label for="p6-d">d) Un lenguaje de programación específico utilizado solo para el desarrollo web.</label>
+        </div>
+        <button onclick="verificarRespuesta('p6', 'a')">Verificar Respuesta</button>
+        <div id="resultado-p6" class="resultado"></div>
+    </div>
+</body>
+</html>

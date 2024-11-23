@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Preguntas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .table-container {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+    .question {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: white;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="table-container">
+      <h3>Tabla de Utilidades por Antigüedad</h3>
+      <table>
+        <tr>
+          <th>Tiempo de Antigüedad</th>
+          <th>Porcentaje de Utilidad</th>
+        </tr>
+        <tr>
+          <td>Menos de 1 año</td>
+          <td>8%</td>
+        </tr>
+        <tr>
+          <td>1 año o más y menos de 2 años</td>
+          <td>10%</td>
+        </tr>
+        <tr>
+          <td>2 años o más y menos de 5 años</td>
+          <td>15%</td>
+        </tr>
+        <tr>
+          <td>5 años o más y menos de 10 años</td>
+          <td>20%</td>
+        </tr>
+        <tr>
+          <td>10 años o más</td>
+          <td>30%</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="question">
+      Completa los espacios del algoritmo de acuerdo con los literales:
+    </div>
+    <div class="options">
+      <button onclick="checkAnswer('a')">a. 1B, 2C, 3D, 4A</button>
+      <button onclick="checkAnswer('b')">b. 1B, 2C, 3A, 4D</button>
+      <button onclick="checkAnswer('c')">c. 1A, 2B, 3D, 4C</button>
+      <button onclick="checkAnswer('d')">d. 1C, 2A, 3B, 4D</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <script>
+    function checkAnswer(answer) {
+      const feedback = document.getElementById("feedback");
+      if (answer === 'c') {
+        feedback.textContent = "🎉 ¡Correcto! La respuesta es: 1A, 2B, 3D, 4C.";
+      } else {
+        feedback.textContent = "❌ Incorrecto. Inténtalo de nuevo.";
+      }
+    }
+  </script>
+</body>
+</html>

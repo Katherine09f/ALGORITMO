@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Número Par o Impar?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Mayor Número</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .options button {
+      margin: 5px;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encuentra el Mayor Número</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .options button {
+      margin: 5px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Encuentra el Mayor Número</h1>
+  <div id="app">
+    <p class="question">
+      Dado el siguiente arreglo: <span id="array-display"></span>, ¿cuál es el número mayor?
+    </p>
+    <div class="options">
+      <button onclick="checkAnswer('a')" id="option-a"></button>
+      <button onclick="checkAnswer('b')" id="option-b"></button>
+      <button onclick="checkAnswer('c')" id="option-c"></button>
+    </div>
+    <div class="result" id="result"></div>
+  </div>
+  <script>
+    // Arreglo fijo de 10 elementos
+    const array = [12, 45, 67, 23, 89, 34, 56, 78, 90, 11];
+    const correctAnswer = Math.max(...array);
+
+    // Mostrar el arreglo en pantalla
+    document.getElementById('array-display').textContent = `[${array.join(', ')}]`;
+
+    // Generar opciones con la respuesta correcta y dos incorrectas
+    const options = [correctAnswer];
+    while (options.length < 3) {
+      const randomOption = Math.floor(Math.random() * 100) + 1;
+      if (!options.includes(randomOption)) {
+        options.push(randomOption);
+      }
+    }
+
+    // Mezclar las opciones
+    options.sort(() => Math.random() - 0.5);
+
+    // Asignar opciones a los botones
+    document.getElementById('option-a').textContent = options[0];
+    document.getElementById('option-b').textContent = options[1];
+    document.getElementById('option-c').textContent = options[2];
+
+    // Verificar la respuesta
+    function checkAnswer(selectedOption) {
+      const selectedValue = parseInt(document.getElementById(`option-${selectedOption}`).textContent);
+      const resultElement = document.getElementById('result');
+      if (selectedValue === correctAnswer) {
+        resultElement.textContent = "¡Correcto! Has seleccionado el mayor número.";
+        resultElement.style.color = 'green';
+      } else {
+        resultElement.textContent = "Incorrecto. Intenta nuevamente.";
+        resultElement.style.color = 'red';
+      }
+    }
+  </script>
+</body>
+</html>
+

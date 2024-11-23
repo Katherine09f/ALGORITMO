@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador: Divisibles por 3 y 7</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f3f4f6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        p {
+            text-align: center;
+            color: #555;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #007bff;
+            background-color: #e9f5ff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .result h3 {
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+        .result p {
+            color: #333;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador: Números Divisibles</h1>
+        <p>Haz clic en el botón para calcular los números divisibles por 3 y 7 entre 1 y 50, y ver las sumas de los pares e impares.</p>
+        <button onclick="numerosDivisiblesYSuma()">Iniciar Simulación</button>
+        
+        <div id="output" class="result" style="display: none;">
+            <h3>Resultados:</h3>
+            <p id="divisibles"></p>
+            <p id="sumaPares"></p>
+            <p id="sumaImpares"></p>
+        </div>
+    </div>
+
+    <script>
+        function numerosDivisiblesYSuma() {
+            let sumaPares = 0;
+            let sumaImpares = 0;
+            let numerosDivisibles = [];
+
+            // Iterar del 1 al 50
+            for (let i = 1; i <= 50; i++) {
+                if (i % 3 === 0 && i % 7 === 0) {
+                    numerosDivisibles.push(i);
+                    if (i % 2 === 0) {
+                        sumaPares += i;
+                    } else {
+                        sumaImpares += i;
+                    }
+                }
+            }
+
+            // Mostrar resultados en la página
+            document.getElementById("output").style.display = "block";
+            document.getElementById("divisibles").innerHTML = 
+                "<strong>Números divisibles por 3 y 7:</strong> " + numerosDivisibles.join(", ");
+            document.getElementById("sumaPares").innerHTML = 
+                "<strong>Suma de números pares:</strong> " + sumaPares;
+            document.getElementById("sumaImpares").innerHTML = 
+                "<strong>Suma de números impares:</strong> " + sumaImpares;
+        }
+    </script>
+</body>
+</html>

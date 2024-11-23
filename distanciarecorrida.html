@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Cálculo de Costo de Delivery</title>
+    <style>
+        /* Diseño general del cuerpo */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Contenedor principal */
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        /* Título principal */
+        h2 {
+            color: #333;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo de las preguntas y respuestas */
+        label {
+            font-size: 18px;
+            margin-left: 10px;
+            color: #555;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Estilo del botón */
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Efecto al pasar el ratón por encima del botón */
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilo del resultado */
+        .respuesta {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Estilo para respuesta correcta */
+        .correcto {
+            color: green;
+        }
+
+        /* Estilo para respuesta incorrecta */
+        .incorrecto {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>En una empresa de deliveries, cada entrega tiene un costo fijo de $10 y un costo variable de $2 por cada kilómetro. ¿Cuál será el costo total de una entrega a 5 km de distancia?</h2>
+
+    <form id="respuestaForm">
+        <!-- Opciones de respuesta -->
+        <div>
+            <input type="radio" id="opcionA" name="respuesta" value="a">
+            <label for="opcionA">$15</label><br><br>
+
+            <input type="radio" id="opcionB" name="respuesta" value="b">
+            <label for="opcionB">$20</label><br><br>
+
+            <input type="radio" id="opcionC" name="respuesta" value="c">
+            <label for="opcionC">$25</label><br><br>
+        </div>
+
+        <!-- Botón para verificar la respuesta -->
+        <button type="button" onclick="verificarRespuesta()">Verificar Respuesta</button>
+    </form>
+
+    <!-- Resultado de la respuesta -->
+    <p id="resultado" class="respuesta"></p>
+</div>
+
+<script>
+    function verificarRespuesta() {
+        const opciones = document.getElementsByName('respuesta');
+        let seleccionada = '';
+        for (let i = 0; i < opciones.length; i++) {
+            if (opciones[i].checked) {
+                seleccionada = opciones[i].value;
+            }
+        }
+        
+        const resultado = document.getElementById("resultado");
+        if (seleccionada === 'b') {
+            resultado.textContent = "¡Correcto! ✅ Correcto el costo total es $20.";
+            resultado.className = "correcto";
+        } else {
+            resultado.textContent = "Incorrecto. ❌ Calcula bien.";
+            resultado.className = "incorrecto";
+        }
+    }
+</script>
+
+</body>
+</html>

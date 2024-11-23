@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contar Palabras en una Frase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Fondo azul claro */
+            text-align: center;
+            padding: 30px;
+            margin: 0;
+        }
+        h1 {
+            color: #f81909;
+            margin-bottom: 20px;
+        }
+        a {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .card {
+            background-color: #faf7f7;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        label {
+            font-size: 16px;
+            color: #0c0c0c;
+            margin-bottom: 10px;
+            display: block;
+        }
+        input {
+            padding: 10px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #131212;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #resultado {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        #resultado h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        #resultado p {
+            font-size: 20px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contar Palabras en una Frase</h1>
+    <!-- Botón de "Volver a simulador" en la parte superior izquierda -->
+    <a href="simulador.html">Volver a Simulador</a>
+    <!-- Tarjeta de entrada -->
+    <div class="card">
+        <label for="frase">Ingresa una frase:</label>
+        <input type="text" id="frase" placeholder="Escribe una frase">
+        <button onclick="contarPalabras()">Contar Palabras</button>
+    </div>
+
+    <!-- Tarjeta de resultado -->
+    <div id="resultado" class="card">
+        <h3>Resultado:</h3>
+        <p id="resultadoFrase"></p>
+    </div>
+
+    <!-- Llamada al archivo de JavaScript -->
+    <script>
+        function contarPalabras() {
+            const frase = document.getElementById('frase').value.trim();
+            const resultadoFrase = document.getElementById('resultadoFrase');
+
+            if (frase === "") {
+                resultadoFrase.textContent = "Por favor ingresa una frase.";
+            } else {
+                const palabras = frase.split(/\s+/).filter(word => word.length > 0);
+                resultadoFrase.textContent = `La frase tiene ${palabras.length} palabras.`;
+            }
+        }
+    </script>
+</body>
+</html>

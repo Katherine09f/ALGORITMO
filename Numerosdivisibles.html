@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Números Divisibles por 3 y 7</title>
+</head>
+<body style="font-family: 'Arial', sans-serif; background: linear-gradient(135deg, #f0f8ff, #e6f7ff); padding: 40px; text-align: center;">
+
+    <h1 style="color: #2f4f4f; margin-bottom: 30px; font-size: 2.5em; font-weight: bold;">Números Divisibles por 3 y 7</h1>
+     <!-- Botón de "Volver a simulador" en la parte superior izquierda -->
+     <a href="simulador.html" style="position: absolute; top: 20px; left: 20px; background-color: #4CAF50; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        Volver a Simulador</a>
+    <!-- Tarjeta de acción -->
+    <div style="background: linear-gradient(145deg, #4caf50, #3e8e41); padding: 30px; border-radius: 15px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); width: 100%; max-width: 500px; margin: 0 auto; color: white;">
+        <button onclick="mostrarDivisibles()" style="padding: 15px 25px; background-color: #ffffff; color: #3e8e41; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: bold; transition: all 0.3s ease;">
+            Mostrar Números Divisibles
+        </button>
+    </div>
+
+    <!-- Tarjeta de resultado -->
+    <div id="resultado" style="background: linear-gradient(145deg, #ffffff, #f5f5f5); padding: 30px; margin-top: 40px; border-radius: 15px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); width: 100%; max-width: 500px; margin: 20px auto; color: #333;">
+        <h3 style="color: #4682b4; margin-bottom: 20px; font-size: 1.5em; font-weight: bold;">Resultado"></h3>
+        <p id="numeros" style="font-size: 18px; font-weight: bold; color: #32cd32;"></p>
+        <p id="sumaPares" style="font-size: 18px; font-weight: bold; color: #ff6347;"></p>
+        <p id="sumaImpares" style="font-size: 18px; font-weight: bold; color: #ff6347;"></p>
+    </div>
+
+    <!-- Llamada al archivo de JavaScript -->
+    <script src="../js/Numeros.js"></script>
+
+</body>
+</html>

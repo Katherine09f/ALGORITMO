@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Preguntas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .question {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: white;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="image-container">
+      <img src="../img/pregunta1.jpeg" alt="Ilustración sobre algoritmos">
+    </div>
+    <div class="question">
+      Indique la línea o líneas que hacen que el algoritmo no funcione correctamente.
+    </div>
+    <div class="options">
+      <button onclick="checkAnswer('a')">a. 10</button>
+      <button onclick="checkAnswer('b')">b. 8</button>
+      <button onclick="checkAnswer('c')">c. 12</button>
+      <button onclick="checkAnswer('d')">d. 11</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <script>
+    function checkAnswer(answer) {
+      const feedback = document.getElementById("feedback");
+      if (answer === 'b') {
+        feedback.textContent = "🎉 ¡Correcto! La línea 8 tiene el error.";
+      } else {
+        feedback.textContent = "❌ Incorrecto. Inténtalo de nuevo.";
+      }
+    }
+  </script>
+</body>
+</html>

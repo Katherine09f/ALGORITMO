@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Opción Múltiple</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        pre {
+            background-color: #e9e9e9;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        #quizForm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            cursor: pointer;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        input[type="radio"] {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            transform: scale(1.2);
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .respuesta-correcta {
+            color: #27ae60;
+            background-color: #e9f7ef;
+            border: 1px solid #27ae60;
+        }
+
+        .respuesta-incorrecta {
+            color: #e74c3c;
+            background-color: #fbe8e8;
+            border: 1px solid #e74c3c;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Pregunta de Programación</h1>
+    <p>¿Cuál es la salida del siguiente código?</p>
+    <pre>
+function contarHastaCinco() {
+    for (let i = 1; i <= 5; i++) {
+        console.log(i);
+    }
+}
+contarHastaCinco();
+    </pre>
+
+    <form id="quizForm">
+        <label>
+            <input type="radio" name="respuesta" value="a"> a) 1 2 3 4 5
+        </label>
+        <label>
+            <input type="radio" name="respuesta" value="b"> b) 0 1 2 3 4 5
+        </label>
+        <label>
+            <input type="radio" name="respuesta" value="c"> c) 1 2 3 4 5 6
+        </label>
+        <label>
+            <input type="radio" name="respuesta" value="d"> d) 1 2 3 4
+        </label>
+        <button type="button" onclick="verificarRespuesta()">Enviar Respuesta</button>
+    </form>
+
+    <p id="resultado"></p>
+
+    <script>
+        function verificarRespuesta() {
+            const respuestas = document.getElementsByName('respuesta');
+            let seleccion = null;
+
+            for (const respuesta of respuestas) {
+                if (respuesta.checked) {
+                    seleccion = respuesta.value;
+                    break;
+                }
+            }
+
+            const resultado = document.getElementById('resultado');
+
+            if (seleccion === "a") {
+                resultado.innerHTML = "¡Correcto! 🎉 La salida es 1 2 3 4 5.";
+                resultado.className = "respuesta-correcta";
+            } else if (seleccion) {
+                resultado.innerHTML = "Intenta de nuevo.";
+                resultado.className = "respuesta-incorrecta";
+            } else {
+                resultado.innerHTML = "Por favor selecciona una respuesta.";
+                resultado.className = "";
+            }
+        }
+    </script>
+
+</body>
+</html>

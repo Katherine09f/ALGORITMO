@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pregunta de Opciones Múltiples</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      font-size: 2em;
+    }
+
+    p {
+      text-align: center;
+      font-size: 1.2em;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    #options {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .option {
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+      font-size: 1.1em;
+      background-color: #ffffff;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .option:hover {
+      background-color: #f0f0f0;
+    }
+
+    .correct {
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+    }
+
+    .incorrect {
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+    }
+
+    .feedback {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pregunta 6</h1>
+  <p>¿Cuál de las siguientes técnicas es fundamental para el desarrollo de un modelo abstracto?</p>
+
+  <div id="options">
+    <div class="option" onclick="checkAnswer(this, false)">
+      a. 🖥️ Compilación del código.
+    </div>
+    <div class="option" onclick="checkAnswer(this, false)">
+      b. 🎨 Diseño visual.
+    </div>
+    <div class="option" onclick="checkAnswer(this, false)">
+      c. 🏋️‍♀️ Pruebas de estrés.
+    </div>
+    <div class="option" onclick="checkAnswer(this, true)">
+      d. 📝 Análisis de requerimientos.
+    </div>
+  </div>
+
+  <div id="feedback" class="feedback"></div>
+
+  <script>
+    function checkAnswer(element, isCorrect) {
+      const options = document.querySelectorAll('.option');
+      // Deshabilitar clics adicionales al seleccionar una opción
+      options.forEach(option => option.style.pointerEvents = 'none'); 
+
+      const feedback = document.getElementById('feedback');
+      if (isCorrect) {
+        element.classList.add('correct');
+        feedback.innerHTML = "✅ ¡Correcto! El análisis de requerimientos es fundamental.";
+      } else {
+        element.classList.add('incorrect');
+        feedback.innerHTML = "❌ Incorrecto";
+      }
+
+      // Permitir al usuario volver a intentar de inmediato
+      setTimeout(() => {
+        // Habilitar clics nuevamente
+        options.forEach(option => {
+          option.classList.remove('correct', 'incorrect'); // Limpiar los estilos de las opciones
+          option.style.pointerEvents = 'auto'; // Habilitar clics nuevamente
+        });
+        feedback.innerHTML = ''; // Limpiar feedback
+      }, 2000); // 
+      }
+  </script>
+</body>
+</html>

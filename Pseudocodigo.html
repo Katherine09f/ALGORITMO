@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Pregunta 9</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .contenedor {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .respuesta {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        label {
+            margin-left: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #444;
+        }
+
+        .emoji-correcto {
+            color: #4CAF50;
+            font-size: 30px;
+        }
+
+        .emoji-incorrecto {
+            color: #FF5733;
+            font-size: 30px;
+        }
+
+        .emoji-advertencia {
+            color: #FFA500;
+            font-size: 30px;
+        }
+    </style>
+    <script>
+        function verificarRespuesta(idPregunta, respuestaCorrecta) {
+            const opciones = document.getElementsByName(idPregunta);
+            const resultado = document.getElementById(`resultado-${idPregunta}`);
+            let seleccionada = false;
+
+            for (const opcion of opciones) {
+                if (opcion.checked) {
+                    seleccionada = true;
+                    if (opcion.value === respuestaCorrecta) {
+                        resultado.textContent = "🎉 ¡Correcto!";
+                        resultado.style.color = "green";
+                    } else {
+                        resultado.textContent = "❌ ¡Incorrecto!";
+                        resultado.style.color = "red";
+                    }
+                    break;
+                }
+            }
+
+            if (!seleccionada) {
+                resultado.textContent = "⚠️ ¡Por favor, selecciona una respuesta!";
+                resultado.style.color = "orange";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="contenedor">
+        <h1></h1>¿Qué es un pseudocódigo?</h1>
+        <h2>Seleccione una opción:</h2>
+        <div class="respuesta">
+            <input type="radio" id="p9-a" name="p9" value="a">
+            <label for="p9-a">a) Un diagrama que muestra el flujo de datos dentro de un sistema.</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p9-b" name="p9" value="b">
+            <label for="p9-b">b) Un lenguaje de programación que es interpretado por el compilador.</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p9-c" name="p9" value="c">
+            <label for="p9-c">c) Una representación simplificada y estructurada de un algoritmo que utiliza un lenguaje intermedio entre el lenguaje humano y el lenguaje de programación.</label>
+        </div>
+        <div class="respuesta">
+            <input type="radio" id="p9-d" name="p9" value="d">
+            <label for="p9-d">d) El código fuente final de un programa que puede ejecutarse directamente en una máquina.</label>
+        </div>
+        <button onclick="verificarRespuesta('p9', 'c')">Verificar Respuesta</button>
+        <div id="resultado-p9" class="resultado"></div>
+    </div>
+</body>
+</html>

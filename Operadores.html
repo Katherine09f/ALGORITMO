@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pregunta 8</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f8ff; /* Fondo azul claro */
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.5rem;
+      color: #ff6f61;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    .option {
+      padding: 10px;
+      margin: 8px 0;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #f9f9f9;
+      transition: all 0.3s;
+    }
+    .option:hover {
+      background: #f1f1f1;
+    }
+    .correct {
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+    }
+    .incorrect {
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pregunta 8</h1>
+    <p>¿Cuál de las siguientes afirmaciones es verdadera sobre el uso de operadores lógicos en estructuras condicionales?</p>
+    <div id="options">
+      <div class="option" onclick="checkAnswer(this, false)">a. AND devuelve verdadero si al menos una condición es verdadera.</div>
+      <div class="option" onclick="checkAnswer(this, false)">b. XOR siempre devuelve verdadero si ambas condiciones son iguales.</div>
+      <div class="option" onclick="checkAnswer(this, true)">c. NOT invierte el valor lógico de una condición.</div>
+      <div class="option" onclick="checkAnswer(this, false)">d. OR devuelve verdadero solo si todas las condiciones son verdaderas.</div>
+    </div>
+    <footer>¡Haz clic en la opción correcta! 😊</footer>
+  </div>
+  <script>
+    function checkAnswer(element, isCorrect) {
+      const options = document.querySelectorAll('.option');
+      options.forEach(option => option.style.pointerEvents = 'none'); // Deshabilitar clics adicionales
+      if (isCorrect) {
+        element.classList.add('correct');
+        alert("✅ ¡Correcto! El operador NOT invierte el valor lógico de una condición.");
+      } else {
+        element.classList.add('incorrect');
+        alert("❌ Incorrecto. La respuesta correcta es: c. NOT invierte el valor lógico de una condición.");
+      }
+    }
+  </script>
+</body>
+</html>
+

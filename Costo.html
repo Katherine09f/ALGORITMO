@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Opción Múltiple</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2em;
+            margin-top: 20px;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+        .option {
+            background-color: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .option:hover {
+            background-color: #dfe6e9;
+        }
+        .option.selected {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        .result {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .respuesta-correcta {
+            color: #28a745;
+        }
+        .respuesta-incorrecta {
+            color: #e74c3c;
+        }
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pregunta Matemática</h1>
+    <div class="container">
+        <p class="question">En un restaurante, cada plato tiene un costo de $12. Si un cliente pide 3 platos, ¿cuál será el costo total de su pedido?</p>
+
+        <form id="quizForm">
+            <div class="option" onclick="selectOption(this, 'a')">a) 24 dólares</div>
+            <div class="option" onclick="selectOption(this, 'b')">b) 30 dólares</div>
+            <div class="option" onclick="selectOption(this, 'c')">c) 48 dólares</div>
+            <div class="option" onclick="selectOption(this, 'd')">d) 36 dólares</div>
+
+            <button type="button" onclick="verificarRespuesta()">Enviar Respuesta</button>
+        </form>
+
+        <p id="resultado" class="result"></p>
+    </div>
+
+    <script>
+        let selectedOption = null;
+
+        // Función para seleccionar la opción
+        function selectOption(optionElement, optionValue) {
+            const opciones = document.querySelectorAll('.option');
+            opciones.forEach(option => option.classList.remove('selected')); // Remover selección anterior
+
+            optionElement.classList.add('selected'); // Marcar la opción seleccionada
+            selectedOption = optionValue; // Guardar la opción seleccionada
+        }
+
+        // Función para verificar la respuesta
+        function verificarRespuesta() {
+            const resultado = document.getElementById('resultado');
+
+            if (selectedOption === "d") {
+                resultado.innerHTML = "¡Correcto! 🎉 El costo total es 36 dólares.";
+                resultado.className = "result respuesta-correcta";
+            } else if (selectedOption) {
+                resultado.innerHTML = "Intenta de nuevo.";
+                resultado.className = "result respuesta-incorrecta";
+            } else {
+                resultado.innerHTML = "Por favor selecciona una respuesta.";
+                resultado.className = "";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Función Multiplicación</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        pre {
+            font-size: 1.1rem;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .respuesta {
+            margin: 12px 0;
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .respuesta:hover {
+            background-color: #e0f7fa;
+            transform: scale(1.05);
+        }
+
+        .correcta {
+            background-color: #c8e6c9; /* Verde claro */
+            color: #1b5e20;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2);
+        }
+
+        .incorrecta {
+            background-color: #ffcdd2; /* Rojo claro */
+            color: #b71c1c;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
+        }
+
+        #resultado {
+            font-size: 1.2rem;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        .correcto-text {
+            color: #2ecc71; /* Verde */
+        }
+
+        .incorrecto-text {
+            color: #e74c3c; /* Rojo */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Simulador de Función Multiplicación</h1>
+        <p>¿Qué resultado produce esta función al llamarla con <code>Multiplicacion(4, 5)</code>?</p>
+        
+        <pre>
+funcion Multiplicacion(a, b)
+    escribir a * b
+fin funcion
+        </pre>
+
+        <div class="respuesta" onclick="verificarRespuesta('a')">
+            a. 10
+        </div>
+        <div class="respuesta" onclick="verificarRespuesta('b')">
+            b. 20
+        </div>
+        <div class="respuesta" onclick="verificarRespuesta('c')">
+            c. 25
+        </div>
+        <div class="respuesta" onclick="verificarRespuesta('d')">
+            d. 40
+        </div>
+
+        <div id="resultado"></div> <!-- Aquí se mostrará la retroalimentación -->
+    </div>
+
+    <script>
+        function verificarRespuesta(opcion) {
+            let respuestas = document.querySelectorAll('.respuesta');
+            respuestas.forEach(respuesta => respuesta.classList.remove('correcta', 'incorrecta'));
+
+            const resultado = document.getElementById('resultado');
+            
+            if (opcion === 'b') {
+                document.querySelector('div[onclick="verificarRespuesta(\'b\')"]').classList.add('correcta');
+                resultado.textContent = "¡Correcto! La función multiplica 4 * 5 y da como resultado 20.";
+                resultado.classList.add('correcto-text');
+                resultado.classList.remove('incorrecto-text');
+            } else {
+                document.querySelector(`div[onclick="verificarRespuesta('${opcion}')"]`).classList.add('incorrecta');
+                resultado.textContent = "¡Incorrecto! Intenta nuevamente.";
+                resultado.classList.add('incorrecto-text');
+                resultado.classList.remove('correcto-text');
+            }
+        }
+    </script>
+
+</body>
+</html>

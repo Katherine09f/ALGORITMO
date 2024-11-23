@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Preguntas</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f8ff; /* Fondo azul claro */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      width: 100%;
+    }
+    .question {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #2f3a45; /* Color más oscuro para texto */
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    button {
+      padding: 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      background-color: #4caf50;
+      color: white;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333; /* Color para el texto de feedback */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="question">
+      ¿Cuál es el resultado de la expresión <code>typeof NaN</code> en JavaScript?
+    </div>
+    <div class="options">
+      <button onclick="checkAnswer('a')">a. 'number'</button>
+      <button onclick="checkAnswer('b')">b. 'undefined'</button>
+      <button onclick="checkAnswer('c')">c. 'NaN'</button>
+      <button onclick="checkAnswer('d')">d. 'object'</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <script>
+    function checkAnswer(answer) {
+      const feedback = document.getElementById("feedback");
+      if (answer === 'a') {
+        feedback.textContent = "🎉 ¡Correcto! 'NaN' pertenece al tipo 'number' en JavaScript.";
+      } else {
+        feedback.textContent = "❌ Incorrecto. Recuerda que 'NaN' se clasifica como un 'number'.";
+      }
+    }
+  </script>
+</body>
+</html>

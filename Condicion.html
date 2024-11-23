@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Pregunta 7</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .contenedor {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .respuesta {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        label {
+            margin-left: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #444;
+        }
+
+        .emoji-correcto {
+            color: #4CAF50;
+            font-size: 30px;
+        }
+
+        .emoji-incorrecto {
+            color: #FF5733;
+            font-size: 30px;
+        }
+
+        .emoji-advertencia {
+            color: #FFA500;
+            font-size: 30px;
+        }
+    </style>
+    <script>
+        function verificarRespuesta(idPregunta, respuestasCorrectas) {
+            const opciones = document.getElementsByName(idPregunta);
+            const resultado = document.getElementById(`resultado-${idPregunta}`);
+            const correctas = respuestasCorrectas.split(",");
+            let seleccionadas = [];
+            let resultadoFinal = "";
+            let emoji = "";
+
+            for (const opcion of opciones) {
+                if (opcion.checked) {
+                    seleccionadas.push(opcion.value);
+                }
+            }
+
+            if (seleccionadas.length === 0) {
+                resultadoFinal = "⚠️ ¡Por favor, selecciona al menos una respuesta!";
+                emoji = "emoji-advertencia";
+            } else {
+                const correctasSeleccionadas = seleccionadas.filter(val => correctas.includes(val));
+
+                if (correctasSeleccionadas.length === correctas.length && correctas.length === seleccionadas.length) {
+                    resultadoFinal = "🎉 ¡Respuesta correcta!";
+                    emoji = "emoji-correcto";
+                } else {
+                    resultadoFinal = "❌ ¡Respuesta incorrecta!";
+                    emoji = "emoji-incorrecto";
+                }
+            }
+
+            resultado.classList = emoji;
+            resultado.textContent = resultadoFinal;
+        }
+    </script>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>¿Qué se entiende por una condición anidada?</h1>
+        <h2>Seleccione una o más de una:</h2>
+        <div class="respuesta">
+            <input type="checkbox" id="p7-a" name="p7" value="a">
+            <label for="p7-a">a) Es cuando una condición se repite varias veces dentro de un bucle.</label>
+        </div>
+        <div class="respuesta">
+            <input type="checkbox" id="p7-b" name="p7" value="b">
+            <label for="p7-b">b) Es una técnica para reducir el número de condiciones en un programa.</label>
+        </div>
+        <div class="respuesta">
+            <input type="checkbox" id="p7-c" name="p7" value="c">
+            <label for="p7-c">c) Es una condición que contiene múltiples operadores lógicos en una sola línea.</label>
+        </div>
+        <div class="respuesta">
+            <input type="checkbox" id="p7-d" name="p7" value="d">
+            <label for="p7-d">d) Es cuando una condición condicional se encuentra dentro de otra condición condicional.</label>
+        </div>
+        <button onclick="verificarRespuesta('p7', 'd')">Verificar Respuesta</button>
+        <div id="resultado-p7" class="resultado"></div>
+    </div>
+</body>
+</html>

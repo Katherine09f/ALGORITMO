@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Corto Circuito</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Fondo azul claro */
+            margin: 0;
+            padding: 40px;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2f3a45;
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .respuesta {
+            margin: 10px auto;
+            padding: 15px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 70%;
+            background-color: #ffffff;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .respuesta:hover {
+            background-color: #e0f7fa;
+            transform: scale(1.02);
+        }
+
+        .correcta {
+            background-color: #c8e6c9; /* Verde claro */
+            color: #1b5e20;
+            font-weight: bold;
+        }
+
+        .incorrecta {
+            background-color: #ffcdd2; /* Rojo claro */
+            color: #b71c1c;
+            font-weight: bold;
+        }
+
+        #resultado {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #34495e;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulador de Evaluación Condicional</h1>
+    <p>¿Qué se entiende por "corto circuito" en una evaluación de una expresión condicional compuesta con operadores lógicos?</p>
+
+    <div class="respuesta" onclick="verificarRespuesta('a')">
+        a. Es el proceso de evaluar todas las condiciones en una expresión lógica independientemente del resultado de las primeras.
+    </div>
+    <div class="respuesta" onclick="verificarRespuesta('b')">
+        b. Es cuando se combinan operadores lógicos AND y OR en una misma expresión.
+    </div>
+    <div class="respuesta" onclick="verificarRespuesta('c')">
+        c. Es una técnica para optimizar el tiempo de ejecución en bucles.
+    </div>
+    <div class="respuesta" onclick="verificarRespuesta('d')">
+        d. Es cuando la evaluación de una expresión condicional se detiene tan pronto como se determina el resultado, sin evaluar las demás condiciones.
+    </div>
+
+    <div id="resultado"></div> <!-- Lugar para mostrar el resultado -->
+
+    <script>
+        function verificarRespuesta(opcion) {
+            let respuestas = document.querySelectorAll('.respuesta');
+            respuestas.forEach(respuesta => respuesta.classList.remove('correcta', 'incorrecta'));
+
+            const resultado = document.getElementById('resultado');
+            
+            if (opcion === 'd') {
+                document.querySelector('div[onclick="verificarRespuesta(\'d\')"]').classList.add('correcta');
+                resultado.textContent = "¡Correcto! La evaluación de la expresión se detiene tan pronto como se determina el resultado.";
+                resultado.style.color = '#2ecc71'; // Verde para respuesta correcta
+            } else {
+                document.querySelector(`div[onclick="verificarRespuesta('${opcion}')"]`).classList.add('incorrecta');
+                resultado.textContent = "¡Incorrecto! Intenta nuevamente.";
+                resultado.style.color = '#e74c3c'; // Rojo para respuesta incorrecta
+            }
+        }
+    </script>
+
+</body>
+</html>

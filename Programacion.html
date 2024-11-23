@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Pregunta</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 70%;
+            max-width: 600px;
+            text-align: left;
+        }
+        h1 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 18px;
+            color: #34495e;
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .options {
+            margin-bottom: 20px;
+        }
+        button {
+            font-size: 18px;
+            padding: 12px 30px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.2s;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .respuesta {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: color 0.3s;
+        }
+        .correcto {
+            color: #28a745; /* Verde para respuesta correcta */
+        }
+        .incorrecto {
+            color: #dc3545; /* Rojo para respuesta incorrecta */
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>¿Cuál es el propósito de una función en programación?</h1>
+
+        <form id="quizForm">
+            <div class="options">
+                <input type="radio" id="a" name="respuesta" value="a">
+                <label for="a">a. Definir una variable que almacena un valor único.</label>
+
+                <input type="radio" id="b" name="respuesta" value="b">
+                <label for="b">b. Organizar los datos de entrada de un programa.</label>
+
+                <input type="radio" id="c" name="respuesta" value="c">
+                <label for="c">c. Encapsular un conjunto de instrucciones que realizan una tarea específica y pueden ser reutilizadas.</label>
+
+                <input type="radio" id="d" name="respuesta" value="d">
+                <label for="d">d. Implementar una estructura de control como un bucle o condición.</label>
+            </div>
+
+            <button type="button" onclick="verificarRespuesta()">Verificar Respuesta</button>
+        </form>
+
+        <div id="respuesta" class="respuesta"></div>
+    </div>
+
+    <script>
+        function verificarRespuesta() {
+            var respuestaSeleccionada = document.querySelector('input[name="respuesta"]:checked');
+            var mensaje = "";
+            var emoji = "";
+            
+            if (respuestaSeleccionada) {
+                if (respuestaSeleccionada.value === 'c') {
+                    mensaje = "¡Correcto!";
+                    emoji = "✅"; // Emoji de éxito
+                    document.getElementById("respuesta").classList.add("correcto");
+                    document.getElementById("respuesta").classList.remove("incorrecto");
+                } else {
+                    mensaje = "¡Incorrecto!";
+                    emoji = "❌"; // Emoji de error
+                    document.getElementById("respuesta").classList.add("incorrecto");
+                    document.getElementById("respuesta").classList.remove("correcto");
+                }
+                document.getElementById("respuesta").innerHTML = mensaje + " " + emoji;
+            } else {
+                document.getElementById("respuesta").innerHTML = "Por favor, selecciona una respuesta.";
+                document.getElementById("respuesta").classList.remove("correcto", "incorrecto");
+            }
+        }
+    </script>
+
+</body>
+</html>

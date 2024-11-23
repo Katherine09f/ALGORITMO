@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Pregunta Múltiple</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .pregunta {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .opciones {
+            margin: 10px 0;
+        }
+        .opcion {
+            margin: 10px;
+            display: inline-block;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .correcta {
+            color: green;
+        }
+        .incorrecta {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulador de Opción Múltiple</h1>
+    <div class="pregunta">
+        ¿Qué sucede si no se respetan las prioridades entre operadores lógicos en una expresión condicional?
+    </div>
+    <div class="opciones">
+        <div class="opcion">
+            <button onclick="verificarRespuesta('a')">a. La expresión fallará y causará un error de ejecución.</button>
+        </div>
+        <div class="opcion">
+            <button onclick="verificarRespuesta('b')">b. La expresión siempre dará como resultado "falso" en lugar de "verdadero".</button>
+        </div>
+        <div class="opcion">
+            <button onclick="verificarRespuesta('c')">c. La expresión puede evaluarse incorrectamente, dando resultados inesperados.</button>
+        </div>
+        <div class="opcion">
+            <button onclick="verificarRespuesta('d')">d. No afecta la evaluación, ya que los operadores tienen la misma prioridad.</button>
+        </div>
+    </div>
+    <div id="resultado"></div>
+
+    <script>
+        function verificarRespuesta(opcion) {
+            const resultado = document.getElementById("resultado");
+
+            // Limpiar mensaje previo
+            resultado.innerHTML = "";
+
+            // Verificar la opción seleccionada
+            if (opcion === 'c') {
+                resultado.innerHTML = "✅ ¡Correcto!";
+                resultado.className = "correcta";
+            } else {
+                resultado.innerHTML = "❌ Incorrecto. Intenta de nuevo.";
+                resultado.className = "incorrecta";
+            }
+        }
+    </script>
+</body>
+</html>

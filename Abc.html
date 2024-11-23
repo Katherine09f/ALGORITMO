@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador con Imagen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .opciones {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #carita {
+            margin-top: 20px;
+            width: 100px;
+            height: 100px;
+            display: none;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Selecciona la opción correcta</h1>
+    <div>
+        <!-- Aquí puedes reemplazar la URL por la imagen que quieras -->
+        <img src="../img/pregunta4.jpg" alt="Imagen de la pregunta">
+    </div>
+    <p>¿Cuál es la secuencia correcta?</p>
+    <div class="opciones">
+        <button onclick="verificarRespuesta('a')">a) 3 4 15, 3 5 33, 3 6 54, 3 7 78</button><br>
+        <button onclick="verificarRespuesta('b')">b) 3 4 15, 4 5 33, 5 6 54, 6 7 77</button><br>
+        <button onclick="verificarRespuesta('c')">c) 3 4 15, 3 5 33, 3 6 53, 3 7 77</button><br>
+        <button onclick="verificarRespuesta('d')">d) 3 4 15, 4 5 33, 5 6 54, 6 7</button>
+    </div>
+    <div id="resultado"></div>
+    <img id="carita" src="" alt="Carita">
+
+    <script>
+        function verificarRespuesta(opcion) {
+            const resultado = document.getElementById('resultado');
+            const carita = document.getElementById('carita');
+            
+            if (opcion === 'b') {
+                resultado.textContent = "¡Correcto! 🎉";
+                resultado.style.color = "green";
+                carita.src = "https://em-content.zobj.net/thumbs/240/whatsapp/326/smiling-face-with-smiling-eyes_1f60a.png"; // Carita feliz
+            } else {
+                resultado.textContent = "Incorrecto. 😢";
+                resultado.style.color = "red";
+                carita.src = "https://em-content.zobj.net/thumbs/240/whatsapp/326/disappointed-face_1f61e.png"; // Carita triste
+            }
+
+            carita.style.display = "block";
+        }
+    </script>
+</body>
+</html>

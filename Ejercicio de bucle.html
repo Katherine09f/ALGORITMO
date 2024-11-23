@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Multiplicaciones con Bucle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .contenedor {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-size: 1em;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .score-board {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .multiplicacion {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .multiplicacion input {
+            width: 50%;
+        }
+
+        .resultado {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #d9534f;
+        }
+
+        .score-board {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <h1>Juego de Multiplicaciones</h1>
+        <label for="tabla">Número de la tabla (1-12):</label>
+        <input id="tabla" type="number" placeholder="Ejemplo: 7" min="1" max="12">
+
+        <label for="inicio">Valor de inicio:</label>
+        <input id="inicio" type="number" placeholder="Ejemplo: 1" min="1">
+
+        <label for="final">Valor final:</label>
+        <input id="final" type="number" placeholder="Ejemplo: 10" min="1">
+
+        <button type="button" onclick="iniciarJuego()">¡Comenzar!</button>
+
+        <div class="score-board">
+            <p>Puntos: <span id="puntos">0</span></p>
+        </div>
+
+        <div id="multiplicaciones"></div>
+
+        <div id="resultado" class="resultado"></div>
+    </div>
+
+    <script>
+        let puntos = 0;
+
+        function iniciarJuego() {
+            // Limpiar el resultado y las multiplicaciones previas
+            document.getElementById("resultado").innerText = '';
+            document.getElementById("multiplicaciones").innerHTML = '';
+
+            const tabla = parseInt(document.getElementById('tabla').value);
+            const inicio = parseInt(document.getElementById('inicio').value);
+            const final = parseInt(document.getElementById('final').value);
+
+            if (!tabla || !inicio || !final || final < inicio) {
+                alert("Por favor, ingresa todos los campos correctamente.");
+                return;
+            }
+
+            // Inicializar puntos
+            puntos = 0;
+            document.getElementById("puntos").textContent = puntos;
+
+            // Mostrar las multiplicaciones
+            let multiplicacionesHtml = '';
+            for (let i = inicio; i <= final; i++) {
+                multiplicacionesHtml += `
+                    <div class="multiplicacion">
+                        <label>${i} x ${tabla} = </label>
+                        <input type="number" id="respuesta-${i}" placeholder="Tu respuesta">
+                    </div>
+                `;
+            }
+
+            document.getElementById("multiplicaciones").innerHTML = multiplicacionesHtml;
+            const botonComprobar = document.createElement("button");
+            botonComprobar.innerText = "Comprobar respuestas";
+            botonComprobar.onclick = comprobarRespuestas;
+            document.getElementById("multiplicaciones").appendChild(botonComprobar);
+        }
+
+        function comprobarRespuestas() {
+            const tabla = parseInt(document.getElementById('tabla').value);
+            const inicio = parseInt(document.getElementById('inicio').value);
+            const final = parseInt(document.getElementById('final').value);
+            let respuestasCorrectas = 0;
+
+            for (let i = inicio; i <= final; i++) {
+                const respuesta = parseInt(document.getElementById(`respuesta-${i}`).value);
+                const resultadoEsperado = i * tabla;
+                if (respuesta === resultadoEsperado) {
+                    respuestasCorrectas++;
+                    puntos += 10; // Sumar 10 puntos por respuesta correcta
+                }
+            }
+
+            // Mostrar resultados
+            document.getElementById("puntos").textContent = puntos;
+            if (respuestasCorrectas === (final - inicio + 1)) {
+                document.getElementById("resultado").innerText = "¡Excelente! Respondiste todas las preguntas correctamente.";
+                document.getElementById("resultado").style.color = 'green';
+            } else {
+                document.getElementById("resultado").innerText = `Respondiste ${respuestasCorrectas} preguntas correctamente.`;
+                document.getElementById("resultado").style.color = 'red';
+            }
+        }
+    </script>
+
+</body>
+</html>

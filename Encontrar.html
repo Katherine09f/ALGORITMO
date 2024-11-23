@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Error en Función</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #89f7fe, #66a6ff);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      width: 100%;
+    }
+    .question {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .code {
+      font-size: 16px;
+      background-color: #f4f4f4;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    button {
+      padding: 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      background-color: #4caf50;
+      color: white;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="question">
+      Encuentra el error en el siguiente código de la función que calcula el factorial de un número.
+    </div>
+    <div class="code">
+      <pre>
+function factorial(n) {
+  let resultado = 1;
+  for (let i = 1; i <= n; i++) {
+    resultado *= i;
+  }
+  return resultado;
+}
+console.log(factorial(5));
+      </pre>
+    </div>
+    <div class="options">
+      <button onclick="checkAnswer('a')">a. El error está en la condición del bucle 'i <= n'.</button>
+      <button onclick="checkAnswer('b')">b. El error está en el cálculo de 'resultado *= i'.</button>
+      <button onclick="checkAnswer('c')">c. No hay error, el código es correcto.</button>
+      <button onclick="checkAnswer('d')">d. El error está en la inicialización de 'resultado'.</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <script>
+    function checkAnswer(answer) {
+      const feedback = document.getElementById("feedback");
+
+      if (answer === 'c') {
+        feedback.textContent = "🎉 ¡Correcto! El código es correcto y calculará el factorial de 5, que es 120.";
+      } else {
+        feedback.textContent = "❌ Incorrecto. Revisa el código y asegúrate de que no haya errores en el cálculo del factorial.";
+      }
+    }
+  </script>
+</body>
+</html>

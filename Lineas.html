@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Preguntas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #00509e;
+        }
+        form {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #00509e;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #003f7e;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .correcto {
+            color: green;
+        }
+        .incorrecto {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Indique la línea o líneas que hacen que el algoritmo no funcione correctamente</h1>
+    <img src="../img/pregunta36.jpeg" alt="Algoritmo en PSeInt">
+    <form id="quizForm">
+        <label>
+            <input type="radio" name="respuesta" value="a">
+            a) 6, 7
+        </label>
+        <label>
+            <input type="radio" name="respuesta" value="b">
+            b) 4
+        </label>
+        <label>
+            <input type="radio" name="respuesta" value="c">
+            c) 5
+        </label>
+        <label>
+            <input type="radio" name="respuesta" value="d">
+            d) 5, 6
+        </label>
+        <button type="button" onclick="verificarRespuesta()">Enviar</button>
+    </form>
+    <div id="resultado"></div>
+    <script>
+        function verificarRespuesta() {
+            const respuestas = document.getElementsByName('respuesta');
+            let seleccionada = null;
+
+            // Verificar qué opción está seleccionada
+            for (const respuesta of respuestas) {
+                if (respuesta.checked) {
+                    seleccionada = respuesta.value;
+                    break;
+                }
+            }
+
+            const resultadoDiv = document.getElementById('resultado');
+
+            // Mostrar mensaje basado en la selección
+            if (seleccionada === null) {
+                resultadoDiv.textContent = 'Por favor, selecciona una respuesta.';
+                resultadoDiv.className = ''; // Quitar colores
+            } else if (seleccionada === 'a') {
+                resultadoDiv.innerHTML = '¡Correcto! Las líneas 6 y 7 hacen que el algoritmo no funcione correctamente.';
+                resultadoDiv.className = 'correcto';
+            } else {
+                resultadoDiv.innerHTML = 'Incorrecto. Inténtalo nuevamente.';
+                resultadoDiv.className = 'incorrecto';
+            }
+        }
+    </script>
+</body>
+</html>
+
