@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generador de Números Aleatorios</title>
+  <style>
+    /* Estilos generales */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f4f7fc; /* Fondo claro sin degradado */
+      color: #333;
+    }
+
+    main {
+      background: #ffffff;
+      padding: 40px 50px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    main:hover {
+      transform: translateY(-5px);
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #5a2d74; /* Color elegante y moderno */
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #5a2d74;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      font-size: 1.1rem;
+      padding: 15px;
+      border: 2px solid #a1a1a1;
+      border-radius: 8px;
+      background-color: #f7f7f7;
+      color: #333;
+      resize: none;
+      transition: border-color 0.3s ease;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #5a2d74; /* Cambio de color en el foco */
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      background-color: #5a2d74;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 50%;
+    }
+
+    button:hover {
+      background-color: #4a1f56; /* Colores oscuros al pasar el ratón */
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    button:active {
+      background-color: #3e1441;
+    }
+
+    .respuesta {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #333;
+      font-weight: 600;
+      background-color: #e8f4f9;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Generador de Números Aleatorios</h1>
+    <form>
+      <div>
+        <button type="button" onclick="generarArreglo()">Generar Arreglo</button>
+      </div>
+
+      <div>
+        <label for="respuesta">Respuesta:</label>
+        <textarea id="respuesta" readonly placeholder="Aquí aparecerán los números generados..."></textarea>
+      </div>
+    </form>
+
+    <div id="respuestaGenerada" class="respuesta" style="display:none;"></div>
+  </main>
+
+  <script>
+    function generarArreglo() {
+      // Definir el tamaño del arreglo y el rango de los números aleatorios
+      const tamañoArreglo = 10; // Tamaño del arreglo de números aleatorios
+      const min = 1;  // Número mínimo del rango
+      const max = 100; // Número máximo del rango
+
+      // Crear un arreglo vacío para almacenar los números generados
+      let arreglo = [];
+
+      // Generar el arreglo de números aleatorios
+      for (let i = 0; i < tamañoArreglo; i++) {
+        let numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
+        arreglo.push(numeroAleatorio);
+      }
+
+      // Mostrar los números generados en el área de texto
+      document.getElementById("respuesta").value = arreglo.join(", ");
+      document.getElementById("respuestaGenerada").style.display = "block";
+      document.getElementById("respuestaGenerada").textContent = `Números generados: ${arreglo.join(", ")}`;
+    }
+  </script>
+</body>
+</html>

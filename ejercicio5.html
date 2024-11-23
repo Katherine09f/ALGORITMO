@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encontrar el Mínimo de un Arreglo</title>
+  <style>
+    /* Estilos generales */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #eef2f7; /* Fondo gris suave */
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    main {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    main:hover {
+      transform: translateY(-5px);
+    }
+
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #3498db; /* Azul claro para el título */
+      font-weight: bold;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #2c3e50; /* Gris oscuro para las etiquetas */
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 15px;
+      font-size: 1rem;
+      border: 2px solid #b2bec3;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      color: #333;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input[type="text"]:focus, textarea:focus {
+      border-color: #3498db;
+      box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+      outline: none;
+    }
+
+    button {
+      padding: 14px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #3498db;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+      transform: scale(1.05);
+    }
+
+    button:active {
+      background-color: #2471a3;
+    }
+
+    textarea {
+      color: #e67e22; /* Naranja para el resultado */
+      font-weight: bold;
+      resize: none;
+    }
+
+    .resultado {
+      padding: 15px;
+      background-color: #ecf5fc;
+      color: #2980b9;
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-align: center;
+      border-radius: 10px;
+      border: 2px solid #3498db;
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Encontrar el Mínimo de un Arreglo</h1>
+    <form>
+      <div>
+        <label for="numeros">Números (separados por coma)</label>
+        <input type="text" id="numeros" placeholder="Ej: 12, 5, 8, 20, 15">
+      </div>
+
+      <div>
+        <label for="resultado">Resultado</label>
+        <textarea id="resultado" readonly placeholder="Aquí aparecerá el número más pequeño..."></textarea>
+      </div>
+
+      <button type="button" onclick="encontrarMinimo()">Calcular Mínimo</button>
+    </form>
+
+    <div id="resultadoCalculado" class="resultado">
+      Mínimo: <span id="minimoResultado"></span>
+    </div>
+  </main>
+
+  <script>
+    function encontrarMinimo() {
+      const numerosInput = document.getElementById('numeros').value;
+      const numeros = numerosInput.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+
+      if (numeros.length === 0) {
+        alert("Por favor, ingresa números válidos.");
+        return;
+      }
+
+      // Encontrar el número mínimo
+      const minimo = Math.min(...numeros);
+
+      // Mostrar el resultado
+      document.getElementById('minimoResultado').textContent = minimo;
+      document.getElementById('resultadoCalculado').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

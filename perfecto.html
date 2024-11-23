@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario de Número Primo</title>
+  <title>Document</title>
   <style>
     /* Estilos generales */
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
@@ -17,21 +17,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      background-color: #f4f7f6; /* Fondo blanco/gris claro */
+      height: 100vh;
+      background-color: #f4f7f6;
       color: #333;
-      padding: 20px;
+      margin: 0;
     }
 
-    .formContainer {
-      background-color: #ffffff; /* Fondo blanco */
-      color: #2e96c6;
+    main {
+      background-color: #ffffff;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      max-width: 450px;
       width: 100%;
       text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    main:hover {
+      transform: translateY(-5px);
     }
 
     h1 {
@@ -40,11 +44,16 @@
       margin-bottom: 20px;
     }
 
+    /* Estilos para el formulario */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
     label {
-      display: block;
       font-weight: bold;
       font-size: 1.1rem;
-      margin-bottom: 10px;
       color: #2e96c6;
     }
 
@@ -53,10 +62,9 @@
       padding: 12px;
       border: 2px solid #007acc;
       border-radius: 8px;
-      font-size: 1rem;
-      margin-bottom: 20px;
-      transition: border-color 0.3s ease;
+      font-size: 1.1rem;
       background-color: #f9f9f9;
+      transition: border-color 0.3s ease;
     }
 
     input[type="text"]:focus, textarea:focus {
@@ -75,7 +83,6 @@
       border-radius: 8px;
       cursor: pointer;
       width: 100%;
-      margin-bottom: 10px;
       transition: background-color 0.3s ease;
     }
 
@@ -83,39 +90,32 @@
       background-color: #005fa3;
     }
 
-    button[type="submit"] {
-      background-color: #555555;
-    }
-
-    button[type="submit"]:hover {
-      background-color: #333131;
-    }
-
-    button a {
-      text-decoration: none;
-      color: white;
-    }
-
-    /* Estilo de la área de respuesta */
+    /* Estilo del área de resultado */
     textarea {
       resize: none;
-      height: 100px;
+      height: 120px;
       font-size: 1.1rem;
     }
   </style>
 </head>
 <body>
-  <div class="formContainer">
-    <h1>Número Primo</h1>
-    <label for="numero">Ingrese un número:</label>
-    <input type="text" id="numero" placeholder="Ingrese un número" min="0">
-    
-    <label for="resp">Resultado:</label>
-    <textarea id="resp" readonly>Aquí va la respuesta</textarea>
+  <main>
+    <h1>Perfecto</h1>
+    <!-- document.getElementById("h").innerHTML="Tabla de Sumar" -->
+    <form>
+      <div>
+        <label for="numero">Número</label>
+        <input type="text" id="numero" placeholder="Ingrese un número" value="">
+      </div>
+      
+      <div>
+        <label for="resp">Respuesta</label>
+        <textarea id="resp" readonly>Aquí va la respuesta</textarea>
+      </div>
 
-    <button type="button" onclick="primos()">Aceptar</button>
-    <button type="submit"><a href="../pages/simulador.html">Regresar</a></button>
-  </div>
+      <button onclick="perfecto()" type="button">Aceptar</button>
+    </form>
+  </main>
 
   <script src="../js/main.js"></script>
 </body>

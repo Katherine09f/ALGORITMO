@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Arreglos</title>
+  <style>
+    /* Estilos generales */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9fafb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #007acc;
+      margin-bottom: 20px;
+    }
+
+    /* Estilos del formulario */
+    input, button {
+      padding: 12px;
+      margin: 10px 0;
+      width: 80%;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    input {
+      border: 2px solid #ccc;
+      background-color: #f5f9fc;
+    }
+
+    input:focus {
+      border-color: #007acc;
+      outline: none;
+      background-color: #e7f4ff;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      color: white;
+      background-color: #007acc;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    button:active {
+      background-color: #004a87;
+    }
+
+    /* Estilos de los mensajes */
+    .array-display {
+      margin-top: 20px;
+      background-color: #f0f8ff;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      color: #333;
+      font-weight: 500;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilos de los botones de acción */
+    .action-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+
+    .action-buttons button {
+      width: 45%;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Simulador de Arreglos</h1>
+    <input type="number" id="arrayInput" placeholder="Ingresa un número" />
+    <div class="action-buttons">
+      <button onclick="addToArray()">Agregar</button>
+      <button onclick="removeFromArray()">Eliminar</button>
+    </div>
+    <div class="action-buttons">
+      <button onclick="clearArray()">Limpiar</button>
+    </div>
+    <div class="array-display" id="arrayDisplay">
+      <h3>Arreglo Actual:</h3>
+      <p id="arrayValues">[]</p>
+    </div>
+  </div>
+
+  <script>
+    let arr = [];
+
+    function addToArray() {
+      const inputValue = document.getElementById('arrayInput').value;
+      if (inputValue !== '') {
+        arr.push(parseInt(inputValue));
+        updateDisplay();
+        document.getElementById('arrayInput').value = '';  // Clear input field
+      } else {
+        alert('Por favor, ingresa un número.');
+      }
+    }
+
+    function removeFromArray() {
+      if (arr.length > 0) {
+        arr.pop();
+        updateDisplay();
+      } else {
+        alert('El arreglo está vacío.');
+      }
+    }
+
+    function clearArray() {
+      arr = [];
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      document.getElementById('arrayValues').textContent = JSON.stringify(arr);
+    }
+  </script>
+</body>
+</html>

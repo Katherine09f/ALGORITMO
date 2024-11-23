@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario de Número Primo</title>
+  <title>Factorial</title>
   <style>
     /* Estilos generales */
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
@@ -17,32 +17,38 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      background-color: #f4f7f6; /* Fondo blanco/gris claro */
+      height: 100vh;
+      background-color: #f4f7f6; /* Fondo blanco y suave */
       color: #333;
-      padding: 20px;
+      margin: 0;
     }
 
+    /* Contenedor principal */
     .formContainer {
       background-color: #ffffff; /* Fondo blanco */
       color: #2e96c6;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       max-width: 400px;
       width: 100%;
       text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .formContainer:hover {
+      transform: translateY(-5px);
     }
 
     h1 {
       font-size: 2rem;
-      color: #ff6347;
       margin-bottom: 20px;
+      color: #ff6347;
     }
 
+    /* Estilos para los campos del formulario */
     label {
       display: block;
-      font-weight: bold;
       font-size: 1.1rem;
       margin-bottom: 10px;
       color: #2e96c6;
@@ -52,11 +58,11 @@
       width: 100%;
       padding: 12px;
       border: 2px solid #007acc;
-      border-radius: 8px;
-      font-size: 1rem;
-      margin-bottom: 20px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      background-color: #f1f1f1;
       transition: border-color 0.3s ease;
-      background-color: #f9f9f9;
     }
 
     input[type="text"]:focus, textarea:focus {
@@ -64,18 +70,18 @@
       outline: none;
     }
 
-    /* Estilo de los botones */
+    /* Estilos de los botones */
     button {
       padding: 12px;
       font-size: 1.1rem;
       font-weight: bold;
-      color: #ffffff;
+      color: #fff;
       background-color: #007acc;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       width: 100%;
-      margin-bottom: 10px;
+      margin-top: 10px;
       transition: background-color 0.3s ease;
     }
 
@@ -83,40 +89,43 @@
       background-color: #005fa3;
     }
 
-    button[type="submit"] {
-      background-color: #555555;
-    }
-
-    button[type="submit"]:hover {
-      background-color: #333131;
-    }
-
     button a {
       text-decoration: none;
       color: white;
     }
 
-    /* Estilo de la área de respuesta */
+    button[type="submit"] {
+      background-color: #555;
+      margin-top: 15px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #333;
+    }
+
+    /* Estilo del área de resultado */
     textarea {
       resize: none;
-      height: 100px;
-      font-size: 1.1rem;
+      height: 80px;
+      font-size: 1.2rem;
+      font-family: 'Arial', sans-serif;
     }
   </style>
 </head>
 <body>
   <div class="formContainer">
-    <h1>Número Primo</h1>
+    <h1>Factorial</h1>
     <label for="numero">Ingrese un número:</label>
     <input type="text" id="numero" placeholder="Ingrese un número" min="0">
     
-    <label for="resp">Resultado:</label>
-    <textarea id="resp" readonly>Aquí va la respuesta</textarea>
-
-    <button type="button" onclick="primos()">Aceptar</button>
+    <label for="resultado">Resultado:</label>
+    <textarea id="resultado" readonly>Aquí va la respuesta</textarea>
+    
+    <button type="button" id="calcular">Calcular</button>
+    
     <button type="submit"><a href="../pages/simulador.html">Regresar</a></button>
   </div>
 
-  <script src="../js/main.js"></script>
+  <script src="../js/numerodado.js"></script>
 </body>
 </html>

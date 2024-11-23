@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Máximo de una Lista</title>
+  <style>
+    /* Estilos generales */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f7f7f7; /* Fondo gris claro */
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    main {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      transition: transform 0.3s ease;
+    }
+
+    main:hover {
+      transform: translateY(-5px);
+    }
+
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 25px;
+      color: #4A90E2; /* Título en azul suave */
+      font-weight: bold;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 15px;
+      font-size: 1rem;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      color: #444;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: #4A90E2;
+      outline: none;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1rem;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      color: #2c3e50;
+      font-weight: 600;
+      resize: none;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 1.1rem;
+      color: white;
+      background-color: #4A90E2;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #357ABD;
+      transform: scale(1.05);
+    }
+
+    button:active {
+      background-color: #2C6E9F;
+    }
+
+    .resultado {
+      padding: 15px;
+      background-color: #ecf5fc;
+      color: #2c3e50;
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-align: center;
+      border-radius: 8px;
+      border: 2px solid #4A90E2;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Máximo de una Lista</h1>
+    <form>
+      <!-- Campo para ingresar los números -->
+      <div>
+        <label for="numeros">Números (separados por comas)</label>
+        <input type="text" id="numeros" placeholder="Ej: 12, 5, 8, 20, 15">
+      </div>
+
+      <!-- Botón para calcular el máximo -->
+      <button type="button" onclick="encontrarMaximo()">Calcular Máximo</button>
+
+      <!-- Área para mostrar el máximo -->
+      <div id="resultado" class="resultado">
+        Número Máximo: <span id="maximoResultado"></span>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    function encontrarMaximo() {
+      const input = document.getElementById('numeros').value;
+      const numeros = input.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+
+      if (numeros.length === 0) {
+        alert("Por favor ingrese números válidos separados por comas.");
+        return;
+      }
+
+      const maximo = Math.max(...numeros);
+
+      // Mostrar el resultado
+      document.getElementById('maximoResultado').textContent = maximo;
+      document.getElementById('resultado').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
